@@ -24,6 +24,10 @@
    
    
 	.selected {
+	    width:300px;
+		height:250px;
+		border: 2px solid #8AC007;
+		display: inline-block;
 		border-radius:0px;
 		!important;
 	}
@@ -32,10 +36,10 @@
 	</style>
 	<script type="text/javascript">
         function OnMouseIn(elem) {
-            elem.style.borderRadius = "0px";
+            elem.className = "selected" ;
         }
         function OnMouseOut(elem) {
-            elem.style.borderRadius = "25px";
+            elem.className = "project_container_div";
         }
     </script>
 		
