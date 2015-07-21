@@ -24,11 +24,7 @@
    
    
 	.selected {
-	    width:300px;
-		height:250px;
-		border: 2px solid #8AC007;
-		display: inline-block;
-		border-radius:0px;
+		border-radius: 0px;
 		!important;
 	}
 	
@@ -36,7 +32,7 @@
 	</style>
 	<script type="text/javascript">
         function OnMouseIn(elem) {
-            elem.className = "selected" ;
+			elem.className += " selected" ;
         }
         function OnMouseOut(elem) {
             elem.className = "project_container_div";
