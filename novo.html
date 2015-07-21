@@ -19,43 +19,62 @@
 		border-radius: 25px;
 		border: 2px solid #8AC007;
 		display: inline-block;
+		
 	}
    
    
 	.selected {
-		border-radius:0px
+		border-radius:0px;
 		!important;
 	}
+	
   
 	</style>
+	<script type="text/javascript">
+        function OnMouseIn(elem) {
+            elem.style.borderRadius = "0px";
+        }
+        function OnMouseOut(elem) {
+            elem.style.borderRadius = "25px";
+        }
+    </script>
+		
 	</head>
   
 	<body>
   
     <div class="page_container_div">
 	
-		<div id="div1" class="project_container_div">
+		<div  class="project_container_div" onmouseover="OnMouseIn(this)"
+		onmouseout="OnMouseOut(this)" >
 		</div>
 		
-		<div id= "div2" class="project_container_div">
+		<div id= "div2" class="project_container_div" onmouseover="OnMouseIn(this)"
+		onmouseout="OnMouseOut(this)">
 		</div>
 		
-		<div id="div3" class="project_container_div">
+		<div id="div3" class="project_container_div" onmouseover="OnMouseIn(this)"
+		onmouseout="OnMouseOut(this)">
 		</div>
 		
-		<div id= "div4" class="project_container_div">
+		<div id= "div4" class="project_container_div" onmouseover="OnMouseIn(this)"
+		onmouseout="OnMouseOut(this)">
 		</div>
 		
-		<div id= "div5" class="project_container_div">
+		<div id= "div5" class="project_container_div" onmouseover="OnMouseIn(this)"
+		onmouseout="OnMouseOut(this)">
 		</div>
 		
-		<div id= "div6" class="project_container_div">
+		<div id= "div6" class="project_container_div" onmouseover="OnMouseIn(this)"
+		onmouseout="OnMouseOut(this)">
 		</div>
 		
-		<div id= "div7" class="project_container_div">
+		<div id= "div7" class="project_container_div" onmouseover="OnMouseIn(this)"
+		onmouseout="OnMouseOut(this)">
 		</div>
 		
-		<div id= "div8" class="project_container_div">
+		<div id= "div8" class="project_container_div" onmouseover="OnMouseIn(this)"
+		onmouseout="OnMouseOut(this)">
 		</div>
 		
 	
