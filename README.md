@@ -1,6 +1,8 @@
 # Mystic Peanut Website
 
 This webpage is presentation of all projects Mystic Peanut Entertainment was involved in.
+
+
 [![Packagist License](https://poser.pugx.org/barryvdh/laravel-elfinder/license.png)](http://choosealicense.com/licenses/mit/)
 
 ##Instalation
@@ -8,7 +10,9 @@ This webpage is presentation of all projects Mystic Peanut Entertainment was inv
 After downloading repository run
 
 >composer install
+
 >npm install
+
 >gulp
 
 #About
