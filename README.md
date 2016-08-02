@@ -10,7 +10,12 @@ This webpage is presentation of all projects Mystic Peanut Entertainment was inv
 After downloading repository run
 
 >composer install
+
+Then install all node packages (this may take a while)
+
 >npm install
+
+And run gulp to move assets from resources to public:
 
 >gulp
 
