@@ -19,5 +19,5 @@ And run gulp to move assets from resources to public:
 
 >gulp
 
-#About
+###About
 You are free to use this website for learning or as a basepoint for creating your own presentation.
