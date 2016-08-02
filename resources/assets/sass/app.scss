@@ -1,0 +1,64 @@
+// @import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.divi {
+  height: 100vh;
+  top: 0;
+  background: #8CB951;
+  color: #fff; }
+
+
+.popicon {
+  background-size: 100%;
+  background: url("/assets/img/laravel.png");
+  position: absolute;
+  top: 180px;
+  height: 1px;
+  width: 1px;
+  left: 250px;
+  transition: transform 0.2s; }
+
+.popicon.popped {
+  transform: scale(150, 150); }
+
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+  width: 70%;
+  height: 300px;
+  margin: auto; }
+
+#mysticCarousel .carousel-indicators li {
+  width: 0px;
+  height: 0px;
+}
+
+/* Indicators images style */
+#mysticCarousel .carousel-indicators div {
+border-radius: 50px;
+cursor: pointer;
+  background-size: 100%;
+  background: url("/assets/img/icon-1.png");
+  color: white;
+  position: absolute;
+  bottom: 80px;
+  font-size: 50px;
+  height: 100px;
+  width: 100px;
+  left: -250px;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  transition: transform 1s;}
+
+
+#mysticCarousel .carousel-indicators div:hover {
+  transform: rotate(360deg); }
+
+
+/* Indicators active image style */
+#mysticCarousel .carousel-indicators .active div {
+  opacity: 0.5; 
+  cursor:default;}
+
+/* Indicators active image style */
+#mysticCarousel .carousel-indicators .active div:hover {
+  transform: none;}
