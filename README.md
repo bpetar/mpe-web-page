@@ -10,7 +10,6 @@ This webpage is presentation of all projects Mystic Peanut Entertainment was inv
 After downloading repository run
 
 >composer install
-
 >npm install
 
 >gulp
