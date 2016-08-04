@@ -20,6 +20,71 @@
 .popicon.popped {
   transform: scale(150, 150); }
 
+
+
+.diamond {
+    position: absolute;
+    bottom: -70px;
+    left: 50%;
+    margin: 0 0 0 -50px;
+    border: transparent 50px solid;
+    border-right-color: #fff;
+    border-left-color: #fff;
+    border-bottom-color: #fff;
+}
+
+.diamond::after {
+    content: '';
+    width: 2000px;
+    height: 100px;
+    background: #fff;
+    position: absolute;
+    bottom: -50px;
+    right: 50px;
+}
+
+.diamond::before {
+    content: '';
+    width: 2000px;
+    height: 100px;
+    background: #fff;
+    position: absolute;
+    bottom: -50px;
+    left: 50px;
+}
+
+
+.diamond2 {
+    position: absolute;
+    bottom: 0px;
+    width: 120px;
+    height: 10px;
+    left: 50%;
+    margin: 0 0 0 -60px;
+    border: transparent 40px solid;
+    border-right-color: #aaa;
+    border-left-color: #aaa;
+    border-bottom-color: #aaa; }
+
+.diamond2::after {
+  content: '';
+  width: 2000px;
+  height: 90px;
+  background: #aaa;
+  position: absolute;
+  bottom: -50px;
+  right: 80px; }
+
+.diamond2::before {
+  content: '';
+  width: 2000px;
+  height: 90px;
+  background: #aaa;
+  position: absolute;
+  bottom: -50px;
+  left: 80px; 
+}
+
 .carousel-inner > .item > img,
 .carousel-inner > .item > a > img {
   width: 70%;

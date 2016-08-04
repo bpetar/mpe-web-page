@@ -199,6 +199,8 @@ $( document ).ready(function() {
 
     </div>
 
+    <div class="diamond" style="">
+    </div>
                     
 </div>
 
@@ -210,7 +212,7 @@ $( document ).ready(function() {
 
 
 
-<div class="divi" style="z-index:311; background:#fff; height:110vh; color:gray;">
+<div class="divi" style="position:relative; z-index:311; background:#fff; height:90vh; color:gray;">
 
 <br><br>
     <div class="container">
@@ -220,15 +222,15 @@ $( document ).ready(function() {
 
                     <div id="id-popicon-laravel" class="popicon" style="background-size: 100%;"></div>
 
-                    <div id="id-popicon-ember" class="popicon" style="background:url('/assets/img/ember.png'); background-size: 100%; left:270px; top:330px;"></div>
+                    <div id="id-popicon-ember" class="popicon" style="background:no-repeat url('/assets/img/ember.png'); background-size: 100%; left:270px; top:330px;"></div>
 
                     <div id="id-popicon-django" class="popicon" style="background:url('/assets/img/django.png'); background-size: 100%; left:120px; top:170px;"></div>
 
                     <div id="id-popicon-node" class="popicon" style="background:url('/assets/img/node.png'); background-size: 100%; left:150px; top:270px;"></div>
 
-                    <div id="id-popicon-html5" class="popicon" style="background:url('/assets/img/HTML5.png'); background-size: 100%; left:110px; top:390px;"></div>
+                    <div id="id-popicon-html5" class="popicon" style="background:url('/assets/img/HTML5.png'); z-index:222; background-size: 100%; left:110px; top:390px;"></div>
 
-                    <div id="id-popicon-three" class="popicon" style="background:url('/assets/img/threejs.png'); background-size: 100%; left:160px; top:100px;"></div>
+                    <div id="id-popicon-three" class="popicon" style="background:no-repeat url('/assets/img/threejs.png'); background-size: 100%; left:160px; top:100px;"></div>
 
             </div>
 
@@ -244,33 +246,63 @@ $( document ).ready(function() {
 
         </div>
     </div>
-                    
+
+    <div class="diamond2" style="">
+    </div>
+
+
 </div>
 
-<div class="divi" style="background:#8CB951; height:110vh; color:white;">
+<div class="divi" style="position:relative; background:#aaa; height:100vh;">
 <br><br>
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
 
-                    <div style="background:#8CB951; color:white;" class="panel-body">
-                        Mystic Peanut's Third Page.
-                    </div>
-                </div>
+        <div style="padding-right: 10px; padding-left: 10px; position:absolute; top:45%; right:40px; border:solid 1px white; font-size:18px; cursor:pointer;"> see all</div>
+
+        <div class="row">
+            <div class="col-md-12" style="text-align:center; top:-50px">
+                        <h1>Mystic Peanut's Projects</h1>
+                        <span>check out some of the things we've been involved with</span>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-md-4" style="padding-right: 100px;">
+                    
+                    <div style="background:no-repeat url('/assets/img/HTML5.png'); background-size: 100%; width:200px; height:300px; margin:auto; border:solid 1px white;"> </div>
+                    <br>
+                    <span style="font-size:22px;" >Project 1</span><br>
+                    <span>Project 1 is about blah blah blah and so on and so forth and try not to be more then too much</span>
+            </div>
+
+            <div class="col-md-4" style="padding-right: 100px;">
+                    
+                    <div style="background:no-repeat url('/assets/img/lionel.jpg'); background-size: 100% 100%; width:200px; height:300px; margin:auto; border:solid 1px white;"> </div>
+                    <br>
+                    <span style="font-size:22px;" >Lionel trains</span><br>
+                    <span>Lionel trains website is about blah blah blah and so on and so forth and try not to be more then too much</span>
+            </div>
+
+            <div class="col-md-4" style="padding-right: 100px;">
+                    
+                    <div style="background:no-repeat url('/assets/img/ember.png'); background-size: 100%; width:200px; height:300px; margin:auto; border:solid 1px white;"> </div>
+                    <br>
+                    <span style="font-size:22px;" >Project 3</span><br>
+                    <span style="width:220px;">Project 1 is about blah blah blah and so on and so forth and try not to be more then too much</span>
+            </div>
+        </div>
+
     </div>
 </div>
 
-<div class="divi" style="background:#aaa;">
+<div class="divi" style="background:#555;">
 <br><br>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
 
-                    <div id="hmm" name"hmm" style="background:#aaa; color:white;" class="panel-body">
+                    <div id="hmm" name"hmm" style="background:#555; color:white;" class="panel-body">
                         Mystic Peanut's Fourth Page.
                     </div>
                 </div>
