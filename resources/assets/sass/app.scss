@@ -3,7 +3,7 @@
 .divi {
   height: 100vh;
   top: 0;
-  background: #8CB951;
+  background: #3f9f3f;
   color: #fff; }
 
 
@@ -21,6 +21,77 @@
   transform: scale(150, 150); }
 
 
+.projectsRow {
+
+}
+
+.projectsRow .col-md-4:hover {
+  cursor: pointer;
+
+}
+
+.projectPic {
+  background: no-repeat url("/assets/img/lionel.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 200px;
+  height: 300px;
+  margin: auto;
+  border: solid 1px white;
+  transition: width 0.2s; }
+
+.col-md-4:hover .projectPic {
+  width: 360px;
+}
+
+.projectPic2 {
+  background: no-repeat url("/assets/img/lionel.jpg");
+  background-size: cover;
+  background-position: center;
+  width: 200px;
+  height: 300px;
+  margin: auto;
+  border: solid 1px white;
+  transition: width 0.2s; }
+
+.col-md-4:hover .projectPic2 {
+  width: 326px; }
+
+.projectTitle {
+  width: 100%; 
+  margin: 20px auto 0 0;
+  text-align:center;
+  /*border:solid 1px red;*/
+}
+
+.col-md-4:hover .projectTitle {
+  text-decoration: underline; 
+  
+}
+
+.projectText {
+  width: 300px; 
+  margin: auto;
+  /*border:solid 1px red;*/
+}
+
+.col-md-4:hover .projectText {
+  text-decoration: underline; 
+}
+
+.google-maps {
+    position: relative;
+    padding-bottom: 15%; // This is the aspect ratio
+    height: 0;
+    overflow: hidden;
+}
+.google-maps iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
 
 .diamond {
     position: absolute;
@@ -62,15 +133,15 @@
     left: 50%;
     margin: 0 0 0 -60px;
     border: transparent 40px solid;
-    border-right-color: #aaa;
-    border-left-color: #aaa;
-    border-bottom-color: #aaa; }
+    border-right-color: #3f9f9f;
+    border-left-color: #3f9f9f;
+    border-bottom-color: #3f9f9f; }
 
 .diamond2::after {
   content: '';
   width: 2000px;
   height: 90px;
-  background: #aaa;
+  background: #3f9f9f;
   position: absolute;
   bottom: -50px;
   right: 80px; }
@@ -79,7 +150,7 @@
   content: '';
   width: 2000px;
   height: 90px;
-  background: #aaa;
+  background: #3f9f9f;
   position: absolute;
   bottom: -50px;
   left: 80px; 

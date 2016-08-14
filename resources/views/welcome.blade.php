@@ -53,6 +53,13 @@ $( document ).ready(function() {
         return false;
     });
 
+    $('#id-a-contact2').click(function() {
+        $root.animate({
+            scrollTop: $( $.attr(this, 'href') ).offset().top
+        }, 500);
+        return false;
+    });
+
 
 
 });
@@ -65,7 +72,7 @@ $( document ).ready(function() {
 <div class="divi" style="position:relative;">
 
 
-    <nav class="navbar navbar-default navbar-static-top" style="background:#8CB951; color:white; border:0px;">
+    <nav class="navbar navbar-default navbar-static-top" style="background:#3f9f3f; color:white; border:0px;">
         <div class="container">
             <div class="navbar-header">
 
@@ -78,7 +85,7 @@ $( document ).ready(function() {
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}" style="color:white;">
+                <a class="navbar-brand" href="{{ url('/') }}" style="color:white;  border-left: solid 1px white; border-right: solid 1px white; border-top: solid 1px white;">
                     Mystic - Peanut
                 </a>
             </div>
@@ -86,7 +93,9 @@ $( document ).ready(function() {
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav" style="color:white;">
-                    <li style="color:white;"><a style="color:white;" href="{{ url('/projects') }}">Projects</a></li>
+                    <li style="background:#3f9f9f; color:white;"><a style="color:white; border-bottom: solid 1px white;" href="{{ url('/projects') }}">Projects</a></li>
+                    <li style="background:#9f9f3f; color:white;"><a style="color:white; border-bottom: solid 1px white;" href="{{ url('/home') }}">News</a></li>
+                    <li style="background:#e02f55; color:white;"><a style="color:white; border-bottom: solid 1px white;" id="id-a-contact2" href="#hmm">Contact</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -253,11 +262,11 @@ $( document ).ready(function() {
 
 </div>
 
-<div class="divi" style="position:relative; background:#aaa; height:100vh;">
+<div class="divi" style="position:relative; background:#3f9f9f; height:100vh;">
 <br><br>
     <div class="container">
 
-        <div style="padding-right: 10px; padding-left: 10px; position:absolute; top:45%; right:40px; border:solid 1px white; font-size:18px; cursor:pointer;"> see all</div>
+        <div style="padding-right: 10px; padding-left: 10px; position:absolute; top:5%; right:20px; border:solid 1px white; font-size:18px; cursor:pointer;"> <a style="color:white;" href="{{ url('/projects') }}">see more</a></div>
 
         <div class="row">
             <div class="col-md-12" style="text-align:center; top:-50px">
@@ -266,49 +275,132 @@ $( document ).ready(function() {
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-md-4" style="padding-right: 100px;">
+        <div class="row projectsRow">
+            <a style="color:white;" href="/projects/2">
+            <div class="col-md-4" style="">
                     
-                    <div style="background:no-repeat url('/assets/img/HTML5.png'); background-size: 100%; width:200px; height:300px; margin:auto; border:solid 1px white;"> </div>
-                    <br>
-                    <span style="font-size:22px;" >Project 1</span><br>
-                    <span>Project 1 is about blah blah blah and so on and so forth and try not to be more then too much</span>
-            </div>
+                    <div class="projectPic" style="background: no-repeat url('/assets/img/code.jpg'); background-size: cover; background-position: center;"> </div>
+                    
+                    <div class="projectTitle">
+                    <span style="color:white; font-size:22px;" >Project 1</span>
+                    </div>
 
-            <div class="col-md-4" style="padding-right: 100px;">
-                    
-                    <div style="background:no-repeat url('/assets/img/lionel.jpg'); background-size: 100% 100%; width:200px; height:300px; margin:auto; border:solid 1px white;"> </div>
-                    <br>
-                    <span style="font-size:22px;" >Lionel trains</span><br>
-                    <span>Lionel trains website is about blah blah blah and so on and so forth and try not to be more then too much</span>
+                    <div class="projectText">
+                    <span style="color:white;">Project 1 is about blah blah blah and so on and so forth and try not to be more then too much</span>
+                    </div>
             </div>
+            </a>
 
-            <div class="col-md-4" style="padding-right: 100px;">
+            <a style="color:white;" href="/projects/2">
+            <div class="col-md-4" style="">
                     
-                    <div style="background:no-repeat url('/assets/img/ember.png'); background-size: 100%; width:200px; height:300px; margin:auto; border:solid 1px white;"> </div>
-                    <br>
-                    <span style="font-size:22px;" >Project 3</span><br>
-                    <span style="width:220px;">Project 1 is about blah blah blah and so on and so forth and try not to be more then too much</span>
+                    <div class="projectPic" > </div>
+                    
+                    <div class="projectTitle">
+                    <span style="color:white; font-size:22px;" >Lionel trains</span>
+                    </div>
+
+                    <div class="projectText">
+                    <span style="color:white;">Lionel trains website is about blah blah blah and so on and so forth and try not to be more then too much</span>
+                    </div>
             </div>
+            </a>
+
+            <a style="color:white;" href="/projects/2">
+            <div class="col-md-4" style="">
+                    
+                    <div class="projectPic" style="background: no-repeat url('/assets/img/mystic-logo.png'); background-size: cover; background-position: center;"> </div>
+                    
+                    <div class="projectTitle">
+                    <span style="color:white; font-size:22px;" >Project 3</span>
+                    </div>
+
+                    <div class="projectText">
+                    <span style="color:white; width:220px;">Project 1 is about blah blah blah and so on and so forth and try not to be more then too much</span>
+                    </div>
+            </div>
+            </a>
         </div>
 
     </div>
 </div>
 
-<div class="divi" style="background:#555;">
-<br><br>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
+<div class="divi" style="background:#555; position:relative; height:80vh;">
 
-                    <div id="hmm" name"hmm" style="background:#555; color:white;" class="panel-body">
-                        Mystic Peanut's Fourth Page.
-                    </div>
-                </div>
+            <div class="google-maps">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4059284.8835981362!2d17.407876687435483!3d45.36749995116911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b10613de93455%3A0xb6f7d683724fe28!2sNovi+Sad!5e0!3m2!1sen!2srs!4v1470597432165" width="1000" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+            </div>
+
+<br><br>
+
+    <div class="container">
+
+        
+
+        <div class="row">
+            <div class="col-md-4">
+                <h1>About</h1>
+                
+            </div>
+
+            <div class="col-md-4">
+            </div>
+
+            <div class="col-md-4">
+                <h1>Contact</h1>
             </div>
         </div>
+
+        <div class="row" style="margin-top:20px;">
+            <div class="col-md-4" style="background:#555; color:white;">
+
+                
+
+                <div style="background:#555; color:white; margin-bottom:15px;" >
+                    We are small game and web development company from Serbia, available on the market since 2007.
+                </div>
+
+                <div style="background:#555; color:white; margin-bottom:15px;" >
+                    Facebook, Tweeter, Google+, Youtube, Blogger, GitHub
+                </div>
+                
+                <div style="background:#555; color:white;" >
+                    <span> Copyright © 2016 Mystic Peanut</span>
+                </div>
+
+
+                    
+                  
+            </div>
+
+            <div class="col-md-4">
+            </div>
+
+            <div class="col-md-4">
+
+                <div style="background:#555; color:white;" >
+                    info@mystic-peanut.com
+                </div>
+
+                <div style="background:#555; color:white;" >
+                    +381638767650
+                </div>
+
+                <div style="background:#555; color:white;" >
+                    Veljka Petrovica 8
+                </div>
+
+                <div style="background:#555; color:white;" >
+                    Novi Sad, Serbia
+                </div>
+
+                <div id="hmm" name"hmm" style="background:url('assets/img/mystic-logo.png'); background-size:contain; height:50px; width:145px; ; margin-top:15px;">
+                </div>
+            </div>
+
+        </div>
     </div>
+
 </div>
 
 
