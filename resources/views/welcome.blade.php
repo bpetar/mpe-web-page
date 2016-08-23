@@ -27,6 +27,7 @@ function triggerPoppers()
     timeoutID = window.setTimeout(function() { triggerPopper("id-popicon-three"); }, 600);
 }
 
+
 $( document ).ready(function() {
     console.log( "ready!" );
 
@@ -62,6 +63,10 @@ $( document ).ready(function() {
 
 
 
+    $('.google-maps').click(function () {
+        $('.google-maps iframe').css("pointer-events", "auto");
+    });
+    
 });
 
 
@@ -94,7 +99,7 @@ $( document ).ready(function() {
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav" style="color:white;">
                     <li style="background:#3f9f9f; color:white;"><a style="color:white; border-bottom: solid 1px white;" href="{{ url('/projects') }}">Projects</a></li>
-                    <li style="background:#9f9f3f; color:white;"><a style="color:white; border-bottom: solid 1px white;" href="{{ url('/home') }}">News</a></li>
+                    <li style="background:#9f9f3f; color:white;"><a style="color:white; border-bottom: solid 1px white;" href="{{ url('/news') }}">News</a></li>
                     <li style="background:#e02f55; color:white;"><a style="color:white; border-bottom: solid 1px white;" id="id-a-contact2" href="#hmm">Contact</a></li>
                 </ul>
 

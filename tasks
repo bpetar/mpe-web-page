@@ -1,4 +1,14 @@
 tasks
 
-- make projects database
-- make homepage html
++ make projects database
++ make homepage html
+- make project tags
+- add project links to actual pages
+- make project description expand on project view
+- add valid project content
+- upload to mystic-peanut site
+- about social icons
+- about email contact clicky
+- home tags to link to project filtered list
+- mobile screen friendly
+- full hd screen friendly
