@@ -1,0 +1,304 @@
+<html>
+	<head>
+		<title>Пукни балончиће 2</title>
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<style>
+			body { 
+				margin: 0; 
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 128%;
+			}
+			
+			.c_container_div
+			{
+				//border: 2px solid green;
+				width: 600px;
+				margin: 0 auto;
+				//padding: 5px;
+				position: relative;
+			}
+			
+			.zbir {
+				font-size:177%;
+				margin-top:28px;
+				padding-left: 20px;
+			}
+			
+			.token { 
+				width:100px;
+				height:100px;
+				position:absolute;
+				margin:7px;
+				cursor:pointer;
+				-webkit-tap-highlight-color:transparent;
+			}
+
+		</style>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-5">
+		
+		<script>
+		var eliment = 0;
+		var coinsaremoved = false;
+		var ELEMENT_WIDTH = 100;
+		var bravoShown = false;
+		var result = 0;
+		var bubbles = [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];
+		var audio_pop = 0;
+		var touch = false;
+		var resultTimoutHandler = 0;
+		
+		var obj1;
+		var obj2;
+		var obj3;
+		var obj4;
+		var obj5;
+		var obj6;
+		var obj7;
+		var obj8;
+		var obj9;
+		var obj10;
+
+		audio_pop = document.createElement('audio');
+		var source_pop = document.createElement('source');
+		source_pop.src = '/matematika/media/sounds/pop.mp3';
+		audio_pop.appendChild(source_pop);
+
+		var divContainer = document.getElementById('id-container-div');
+		
+		function touchStartHandler(event) {
+			var obj = this;
+			if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
+			console.log('huhu');
+			touch = true;
+			eliment = obj;
+			eliment.style.background = 'url("/matematika/media/images/bubble_burst.png")';
+			eliment.style.backgroundSize = '100%';
+			//playSoundPop();
+			audio_pop.volume = 1;
+			audio_pop.currentTime = 0;
+			audio_pop.play();
+			eliment.childNodes[1].innerHTML = "";
+			//eliment.parentElement.removeChild(eliment);
+			setTimeout(function(){ 
+				eliment.style.display= 'none';				
+				result++;
+			}, 130);
+			resultTimoutHandler = setTimeout(function(){ 
+				checkResult();
+			}, 1200);
+
+		}
+
+		function onWindowResize()
+		{
+			var myScreenWidth = 600;
+			if(window.innerWidth < 600)
+			{
+				myScreenWidth = window.innerWidth;
+			}
+			
+			//adjust game to less screen? ui.
+			divContainer.style.width = myScreenWidth + 'px';
+			divContainer.style.height = (window.innerHeight-40) + 'px';
+
+			ELEMENT_WIDTH = myScreenWidth/6;
+			
+			var nesto = 600-myScreenWidth; //nesto raste od 1 do 300
+			var zbirs = document.querySelectorAll('.zbir');
+			for(var i=0; i<zbirs.length; i++){
+				var fontsize = 177-87*nesto/300;
+				var margina = 28 - 14*nesto/300;
+				var pading = 20-10*nesto/300;
+				zbirs[i].style.fontSize=""+fontsize+"%";
+				zbirs[i].style.marginTop=""+margina+"px";//"14px";//"28px";
+				zbirs[i].style.paddingLeft=""+pading+"px";//"20px";
+			}
+			/*450 -> 100
+			600 -> 177
+			
+			153 -> 77
+			150 -> 77*/
+			var elements = document.querySelectorAll('.token');
+			for(var i=0; i<5; i++){
+				elements[i].style.width = ELEMENT_WIDTH + "px";
+				elements[i].style.height = ELEMENT_WIDTH + "px";
+				elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
+				elements[i].style.top = (120) + "px";
+			}
+			for(var i=5; i<10; i++){
+				elements[i].style.width = ELEMENT_WIDTH + "px";
+				elements[i].style.height = ELEMENT_WIDTH + "px";
+				elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-5)) + "px";
+				elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
+			}
+
+		}
+					
+		function init()
+		{
+			audio_pop.volume = 1;
+			audio_pop.currentTime = 0;
+			audio_pop.play();
+			window.addEventListener( 'resize', onWindowResize, false );
+			divContainer = document.getElementById('id-container-div');
+			console.log(window.innerWidth);
+			divContainer.style.height = (window.innerHeight-40) + 'px';
+			if(window.innerWidth < 600)
+			{
+				//adjust game to less screen?
+				divContainer.style.width = window.innerWidth + 'px';
+				//alert("screen width too small, try landscape");
+				ELEMENT_WIDTH = window.innerWidth/6;
+				
+				var nesto = 600-window.innerWidth; //nesto raste od 1 do 300
+				var zbirs = document.querySelectorAll('.zbir');
+				for(var i=0; i<zbirs.length; i++){
+					var fontsize = 177-87*nesto/300;
+					var margina = 28 - 14*nesto/300;
+					var pading = 20-10*nesto/300;
+					zbirs[i].style.fontSize=""+fontsize+"%";
+					zbirs[i].style.marginTop=""+margina+"px";//"14px";//"28px";
+					zbirs[i].style.paddingLeft=""+pading+"px";//"20px";
+				}
+
+			
+				var elements = document.querySelectorAll('.token');
+				for(var i=0; i<5; i++){
+					elements[i].style.width = ELEMENT_WIDTH + "px";
+					elements[i].style.height = ELEMENT_WIDTH + "px";
+					elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
+					elements[i].style.top = (120) + "px";
+				}
+				for(var i=5; i<10; i++){
+					elements[i].style.width = ELEMENT_WIDTH + "px";
+					elements[i].style.height = ELEMENT_WIDTH + "px";
+					elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-5)) + "px";
+					elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
+				}
+
+			}
+			
+			obj1 = document.getElementById('za-toliko-zad1-1');
+			obj2 = document.getElementById('za-toliko-zad1-2');
+			obj3 = document.getElementById('za-toliko-zad1-3');
+			obj4 = document.getElementById('za-toliko-zad1-4');
+			obj5 = document.getElementById('za-toliko-zad1-5');
+			obj6 = document.getElementById('za-toliko-zad1-6');
+			obj7 = document.getElementById('za-toliko-zad1-7');
+			obj8 = document.getElementById('za-toliko-zad1-8');
+			obj9 = document.getElementById('za-toliko-zad1-9');
+			obj10 = document.getElementById('za-toliko-zad1-10');
+			
+			obj1.addEventListener('touchstart', touchStartHandler, false);
+			obj2.addEventListener('touchstart', touchStartHandler, false);
+			obj3.addEventListener('touchstart', touchStartHandler, false);
+			obj4.addEventListener('touchstart', touchStartHandler, false);
+			obj5.addEventListener('touchstart', touchStartHandler, false);
+
+			obj6.addEventListener('touchstart', touchStartHandler, false);
+			obj7.addEventListener('touchstart', touchStartHandler, false);
+			obj8.addEventListener('touchstart', touchStartHandler, false);
+			obj9.addEventListener('touchstart', touchStartHandler, false);
+			obj10.addEventListener('touchstart', touchStartHandler, false);
+		}
+
+		function checkResult()
+		{
+			console.log('checkResult huhu: ' + obj1.style.display);
+			if(
+			(obj1.style.display == "")&&
+			(obj2.style.display == "")&&
+			(obj3.style.display == "")&&
+			(obj4.style.display == "none")&&
+			(obj5.style.display == "")&&
+			(obj6.style.display == "none")&&
+			(obj7.style.display == "")&&
+			(obj8.style.display == "none")&&
+			(obj9.style.display == "")&&
+			(obj10.style.display == "none")
+			)
+			{
+				if(!bravoShown)
+				{
+					alert('BRAVO PETRA!!!');
+					bravoShown = true;
+				}
+			}
+		}
+		
+		function goingDown(el)
+		{
+			if(!touch)
+			{
+				if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
+				console.log('hehe');
+				eliment = el;
+				eliment.style.background = 'url("/matematika/media/images/bubble_burst.png")';
+				eliment.style.backgroundSize = '100%';
+				//playSoundPop();
+				audio_pop.volume = 1;
+				audio_pop.currentTime = 0;
+				audio_pop.play();
+				//eliment.parentElement.removeChild(eliment);
+				console.log(eliment.childNodes.length);
+				eliment.childNodes[1].innerHTML = "";
+				setTimeout(function(){ 
+					eliment.style.display = 'none';				
+					result++;
+				}, 130);
+				resultTimoutHandler = setTimeout(function(){ 
+					checkResult();
+				}, 1200);
+			}
+			
+		}
+		
+		</script>
+	</head>
+	<body onload='init();' >
+	
+	<div id="id-container-div" class="c_container_div" style="">
+		<br>
+		Пукни оне балоне чији је збир за 3 већи од 5.<br>
+		<br>
+
+		<div id='za-toliko-zad1-1' class='token' onmousedown='goingDown(this);' style='left:0px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'>
+		<p class='zbir'>2+1</p>
+		</div>
+		<div id='za-toliko-zad1-2' class='token' onmousedown='goingDown(this);' style='left:115px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'>
+		<p class='zbir'>1+4</p>
+		</div>
+		<div id='za-toliko-zad1-3' class='token' onmousedown='goingDown(this);' style='left:230px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'>
+		<p class='zbir'>7+8</p>
+		</div>
+		<div id='za-toliko-zad1-4' class='token' onmousedown='goingDown(this);' style='left:345px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'>
+		<p class='zbir'>5+3</p>
+		</div>
+		<div id='za-toliko-zad1-5' class='token' onmousedown='goingDown(this);' style='left:454px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'>
+		<p class='zbir'>2+2</p>
+		</div>
+		
+		<div id='za-toliko-zad1-6' class='token' onmousedown='goingDown(this);' style='left:0px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'>
+		<p class='zbir'>4+4</p>
+		</div>
+		<div id='za-toliko-zad1-7' class='token' onmousedown='goingDown(this);' style='left:115px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'>
+		<p class='zbir'>9+9</p>
+		</div>
+		<div id='za-toliko-zad1-8' class='token' onmousedown='goingDown(this);' style='left:230px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'>
+		<p class='zbir'>2+6</p>
+		</div>
+		<div id='za-toliko-zad1-9' class='token' onmousedown='goingDown(this);' style='left:345px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'>
+		<p class='zbir'>3+3</p>
+		</div>
+		<div id='za-toliko-zad1-10' class='token' onmousedown='goingDown(this);' style='left:454px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'>
+		<p class='zbir'>1+7</p>
+		</div>
+		
+	</div>
+		
+	<div id="id-container-div" class="c_container_div" style="width:100px">
+	<center><a href="za_toliko.html">назад</a>&nbsp;&nbsp;&nbsp;<a href="./za_toliko_2.html">поново</a> <center>
+	</div>
+	
+	</body>
+</html>

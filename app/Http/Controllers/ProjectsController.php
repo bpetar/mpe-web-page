@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\ProjectRequest;
 use App\Project;
+use App;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
 class ProjectsController extends Controller
 {
@@ -24,10 +28,48 @@ class ProjectsController extends Controller
         return view('projects.show', compact('project'));
     }
 
-    public function create()
+     public function showTags($tag)
     {
+        $projects = DB::table('projects')->where('tags','<>','')->get();
+
+        $projectsWithTag = [];
+        //$tuRecenicu = '';
+
+        foreach ($projects as $project) {
+            $hasTag= strpos($project->tags,$tag);
+            //dd($hasTag);
+            //$tuRecenicu=$tuRecenicu.' '. $project->tags;
+            //$nizProjekata=explode(' ',$tuRecenicu);
+            //$nizProjekataKojiSeNePonavljaju=array_unique($nizProjekata);
+            //$nizProjekataKojiSeNePonavljajuBezPraznihPolja=array_filter($nizProjekataKojiSeNePonavljaju);
+
+            if($hasTag !== false) 
+            {
+                $project->tagsArr= explode(' ',$project->tags);
+                array_push($projectsWithTag,$project);
+            }            
+        }
+
+        
+        //dd($nizProjekataKojiSeNePonavljajuBezPraznihPolja);
+        //dd('pera' . $projectsWithTag);
+        //dd('pera'. $tags);
+        return view('projects.tags', compact('projectsWithTag'));
+    }
+
+    public function create()
+    {    
+
+
+        if(!Auth::user())
+        {
+            dd('there was problem saying you are not logged in');
+            return;
+        }
+
     	return view('projects.create');
     }
+
 
     public function store(ProjectRequest $request)
     {
@@ -101,7 +143,13 @@ class ProjectsController extends Controller
     }
 
     public function edit($id)
-    {
+    {     
+        if(!Auth::user())
+        {
+            dd('there was problem saying you are not logged in');
+            return;
+        }
+
     	$project = Project::findOrFail($id);
     	return view('projects.edit', compact('project'));
     }

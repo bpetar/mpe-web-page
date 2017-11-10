@@ -1,0 +1,276 @@
+<html>
+	<head>
+		<title>Оловке</title>
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<style>
+			body { 
+				margin: 0; 
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 128%;
+			}
+			
+			.c_container_div
+			{
+				//border: 2px solid green;
+				width: 600px;
+				margin: 0 auto;
+				padding-left: 9px;
+				position: relative;
+			}
+			
+			.selecctor {
+				width:40px;
+				position:absolute;
+				cursor:pointer;
+				//border: solid red 1px;
+				-webkit-tap-highlight-color:transparent;
+			}
+			
+			.token { 
+				width:340px;
+				height:510px;
+				position:absolute;
+				margin:7px;
+				-webkit-tap-highlight-color:transparent;
+			}
+
+		</style>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-5">
+		
+		<script>
+		var eliment = 0;
+		var ELEMENT_WIDTH = 100;
+		var bravoShown = false;
+		var touch = false;
+		
+		var obj1;
+		var obj2;
+		var obj3;
+		var obj4;
+		var obj5;
+
+
+		var divContainer = document.getElementById('id-container-div');
+		
+		function touchStartHandler(event) {
+			var obj = this;
+			console.log('huhu');
+			touch = true;
+			eliment = obj;
+			checkResult();
+		}
+
+		function onWindowResize()
+		{
+			var myScreenWidth = 600;
+			if(window.innerWidth < 600)
+			{
+				myScreenWidth = window.innerWidth;
+			}
+			
+			//adjust game to less screen? ui.
+			divContainer.style.width = myScreenWidth + 'px';
+			divContainer.style.height = (window.innerHeight-40) + 'px';
+
+			ELEMENT_WIDTH = myScreenWidth/6;
+			var smalling = 600 - myScreenWidth;
+			
+			var elements = document.querySelectorAll('.token');
+			var divselecctors = document.querySelectorAll('.selecctor');
+			if(smalling>0)
+			{
+				if(smalling < 220)
+				{
+					var leftpad = 120 - smalling/2;
+					elements[0].style.left = ""+leftpad+"px";
+					
+					var divselecctorsleft1 = 145 - smalling/2;
+					divselecctors[0].style.left = "" + divselecctorsleft1 + "px";
+					var divselecctorsleft2 = 210 - smalling/2;
+					divselecctors[1].style.left = "" + divselecctorsleft2 + "px";
+					var divselecctorsleft3 = 275 - smalling/2;
+					divselecctors[2].style.left = "" + divselecctorsleft3 + "px";
+					var divselecctorsleft4 = 340 - smalling/2;
+					divselecctors[3].style.left = "" + divselecctorsleft4 + "px";
+					var divselecctorsleft5 = 405 - smalling/2;
+					divselecctors[4].style.left = "" + divselecctorsleft5 + "px";
+				
+				}
+				else
+				{
+					var picwidth = 340 - 240*(smalling-220)/300;
+					var picheight = 510*picwidth/340;
+					elements[0].style.width = "" + picwidth + "px";
+					elements[0].style.height = "" + picheight + "px";
+					elements[0].style.left = "10px";
+					
+					var divselecctorsleft1 = 145 - 110 - (smalling-220)/8;
+					divselecctors[0].style.left = "" + divselecctorsleft1 + "px";
+					var divselecctorsleft2 = 210 - 110 - (smalling-220)/4;
+					divselecctors[1].style.left = "" + divselecctorsleft2 + "px";
+					var divselecctorsleft3 = 275 - 110 - (smalling-220)/3;
+					divselecctors[2].style.left = "" + divselecctorsleft3 + "px";
+					var divselecctorsleft4 = 340 - 110 - (smalling-220)/2;
+					divselecctors[3].style.left = "" + divselecctorsleft4 + "px";
+					var divselecctorsleft5 = 405 - 110 - (smalling-220)/1.5;
+					divselecctors[4].style.left = "" + divselecctorsleft5 + "px";
+					
+				}
+				
+				
+			}
+			else
+			{
+				elements[0].style.left = "" + 120 + "px";
+				elements[0].style.width = "" + 340 + "px";
+				elements[0].style.height = "" + 510 + "px";
+				
+				divselecctors[0].style.left = "145px";
+				divselecctors[1].style.left = "210px";
+				divselecctors[2].style.left = "275px";
+				divselecctors[3].style.left = "340px";
+				divselecctors[4].style.left = "405px";
+			}
+		}
+					
+		function init()
+		{
+			
+			window.addEventListener( 'resize', onWindowResize, false );
+			divContainer = document.getElementById('id-container-div');
+			console.log(window.innerWidth);
+			divContainer.style.height = (window.innerHeight-40) + 'px';
+			if(window.innerWidth < 600)
+			{
+				//adjust game to less screen?
+				divContainer.style.width = window.innerWidth + 'px';
+				//alert("screen width too small, try landscape");
+				ELEMENT_WIDTH = window.innerWidth/6;
+			
+				var smalling = 600 - window.innerWidth;
+			
+				var elements = document.querySelectorAll('.token');
+				var divselecctors = document.querySelectorAll('.selecctor');
+				if(smalling>0)
+				{
+					if(smalling < 220)
+					{
+						var leftpad = 120 - smalling/2;
+						elements[0].style.left = ""+leftpad+"px";
+						
+						var divselecctorsleft1 = 145 - smalling/2;
+						divselecctors[0].style.left = "" + divselecctorsleft1 + "px";
+						var divselecctorsleft2 = 210 - smalling/2;
+						divselecctors[1].style.left = "" + divselecctorsleft2 + "px";
+						var divselecctorsleft3 = 275 - smalling/2;
+						divselecctors[2].style.left = "" + divselecctorsleft3 + "px";
+						var divselecctorsleft4 = 340 - smalling/2;
+						divselecctors[3].style.left = "" + divselecctorsleft4 + "px";
+						var divselecctorsleft5 = 405 - smalling/2;
+						divselecctors[4].style.left = "" + divselecctorsleft5 + "px";
+					
+					}
+					else
+					{
+						var picwidth = 340 - 240*(smalling-220)/300;
+						var picheight = 510*picwidth/340;
+						elements[0].style.width = "" + picwidth + "px";
+						elements[0].style.height = "" + picheight + "px";
+						elements[0].style.left = "10px";
+						
+						var divselecctorsleft1 = 145 - 110 - (smalling-220)/8;
+						divselecctors[0].style.left = "" + divselecctorsleft1 + "px";
+						var divselecctorsleft2 = 210 - 110 - (smalling-220)/4;
+						divselecctors[1].style.left = "" + divselecctorsleft2 + "px";
+						var divselecctorsleft3 = 275 - 110 - (smalling-220)/3;
+						divselecctors[2].style.left = "" + divselecctorsleft3 + "px";
+						var divselecctorsleft4 = 340 - 110 - (smalling-220)/2;
+						divselecctors[3].style.left = "" + divselecctorsleft4 + "px";
+						var divselecctorsleft5 = 405 - 110 - (smalling-220)/1.5;
+						divselecctors[4].style.left = "" + divselecctorsleft5 + "px";
+						
+					}
+					
+					
+				}
+				else
+				{
+					elements[0].style.left = "" + 120 + "px";
+					elements[0].style.width = "" + 340 + "px";
+					elements[0].style.height = "" + 510 + "px";
+					
+					divselecctors[0].style.left = "145px";
+					divselecctors[1].style.left = "210px";
+					divselecctors[2].style.left = "275px";
+					divselecctors[3].style.left = "340px";
+					divselecctors[4].style.left = "405px";
+				}
+			}
+			
+			//obj1 = document.getElementById('za-toliko-zad3-1');
+			//obj2 = document.getElementById('za-toliko-zad3-2');
+			obj3 = document.getElementById('za-toliko-zad3-3');
+			//obj4 = document.getElementById('za-toliko-zad3-4');
+			//obj5 = document.getElementById('za-toliko-zad3-5');
+			
+			//obj1.addEventListener('touchstart', touchStartHandler, false);
+			//obj2.addEventListener('touchstart', touchStartHandler, false);
+			obj3.addEventListener('touchstart', touchStartHandler, false);
+			//obj4.addEventListener('touchstart', touchStartHandler, false);
+			//obj5.addEventListener('touchstart', touchStartHandler, false);
+		}
+
+		function checkResult()
+		{
+			console.log('checkResult huhu');
+			if(true)
+			{
+				if(!bravoShown)
+				{
+					alert('BRAVO PETRA!!!');
+					bravoShown = true;
+				}
+			}
+		}
+		
+		function goingDown(el)
+		{
+			if(!touch)
+			{
+				console.log('hehe');
+				eliment = el;
+				checkResult();
+			}
+			
+		}
+		
+		</script>
+	</head>
+	<body onload='init();' >
+	
+	<div id="id-container-div" class="c_container_div" style="">
+		<br>
+		Кликни на оловку која је за 2 сантиметра већа од најкраће.<br>
+
+		<div id='za-toliko-zad3-0' class='token' style='left:120px; top:65px; background: url("/matematika/media/images/pencils.png"); background-size: 100%;'>
+		</div>
+		
+		<div id='za-toliko-zad3-1' class='selecctor' style='left:145px; top:100px; height:460px;'>
+		</div>
+		<div id='za-toliko-zad3-2' class='selecctor' style='left:210px; top:160px; height:400px;'>
+		</div>
+		<div id='za-toliko-zad3-3' class='selecctor' onmousedown='goingDown(this);' style='left:275px; top:230px; height:330px;'>
+		</div>
+		<div id='za-toliko-zad3-4' class='selecctor' style='left:340px; top:290px; height:270px;'>
+		</div>
+		<div id='za-toliko-zad3-5' class='selecctor' style='left:405px; top:355px; height:205px;'>
+		</div>
+		
+	</div>
+		
+	<div id="id-container-div" class="c_container_div" style="width:100px">
+	<center><a href="za_toliko.html">назад</a>&nbsp;&nbsp;&nbsp;<a href="./za_toliko_3.html">поново</a> <center>
+	</div>
+	
+	</body>
+</html>

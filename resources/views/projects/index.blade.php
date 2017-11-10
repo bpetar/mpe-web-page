@@ -90,8 +90,13 @@ $( document ).ready(function() {
         <div class="row projectsRow" style="color:white;">
             <div class="col-md-12" style="">
                 <div class="panel panel-default" style="background:#3f9f9f;">
-                    <div class="panel-body" style="">
+                    <div class="panel-body" style="text-align: center;">
                         All Projects
+
+                        @if (auth()->check())
+                        <p style="text-align: center;"><b><a href="/projects/create" style="color: white;"> Add New Project </a><b></p>
+                         @endif
+
                     </div>
                 </div>
             </div>
@@ -117,10 +122,10 @@ $( document ).ready(function() {
                         </div>
 
                         <div class="projectText">
-                        <span style="color:white; width:220px;">Tags: {{$project->tags}}</span>
+                        <span style="color:white; width:220px;">Tags: <a style="" href="/tags/{{$project->tags}}">{{$project->tags}}</a></span>
                         </div>
 	            
-                        {{--    
+                        @if (auth()->check())
 						{{ Form::open(array('url' => URL::to('/projects/' . $project->id . '/edit'), 'method' => 'GET', 'style'=>'display:inline-block')) }}
 					    <button type="submit" >Edit</button>
 						{{ Form::close() }}
@@ -128,7 +133,8 @@ $( document ).ready(function() {
 						{{ Form::open(array('url' => URL::to('/projects/' . $project->id), 'method' => 'DELETE', 'style'=>'display:inline-block')) }}
 					    <button type="submit" >Delete</button>
 						{{ Form::close() }}
-						--}}
+                        @endif
+						
 
 						<br>
 					</div>

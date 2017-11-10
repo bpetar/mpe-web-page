@@ -1,0 +1,426 @@
+<html>
+	<head>
+		<title>Сабери кованице</title>
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-5">
+		<style>
+			body { 
+				margin: 0; 
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 128%;
+			}
+			
+			.c_container_div
+			{
+				//border: 2px solid green;
+				width: 600px;
+				margin: 0 auto;
+				//padding: 5px;
+				position: relative;
+			}
+			
+			.square { 
+				background-color: white;
+				border: 2px solid yellow;
+				border-radius:10px;
+				width:100px;
+				height:100px;
+				position:absolute;
+				//margin:5px;
+			}
+			
+			.token { 
+				width:100px;
+				height:100px;
+				position:absolute;
+				margin:7px;
+				cursor:pointer;
+			}
+			
+			.first_row {
+				top:80px;
+			}
+			
+			.second_row {
+				top:190px;
+			}
+			
+			.third_row {
+				top:340px;
+			}
+			
+			.fourth_row {
+				top:450px;
+			}
+
+		</style>
+		
+		<script>
+		var eliment = 0;
+		var coinsaremoved = false;
+		var ELEMENT_WIDTH = 100;
+		var bravoShown = false;
+		var result = [0,0,0,0,0];
+		var coins = [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];
+		var slot1 = {xpos:2, ypos:73};
+		var slot2 = {xpos:2, ypos:183};
+		var slot3 = {xpos:228, ypos:73};
+		var slot4 = {xpos:228, ypos:183};
+		var divContainer = document.getElementById('id-container-div');
+		
+		function touchMoveHandler(event) {
+			
+			event.preventDefault(); //this should kill reload
+			
+			var cordx = 0;
+			var cordy = 0;
+				// If there's exactly one finger inside this element
+				if (event.targetTouches.length == 1) {
+					var touch = event.targetTouches[0];
+					// Place element where the finger is
+					cordx = touch.pageX - (ELEMENT_WIDTH/2+5) - divContainer.offsetLeft;
+					cordy = touch.pageY - (ELEMENT_WIDTH/2+10) - divContainer.offsetTop;
+					coinsaremoved = true;
+					var pos = getSnapPosition(cordx,cordy);
+					if(pos.x!=-10)
+					{
+						cordx = pos.x;
+						cordy = pos.y;
+						
+						console.log('snapping element: ' + eliment.id + ' to position: ' + pos.id);
+						//result[pos.id] = eliment.id;
+					}
+					
+					console.log('touch moving asdasasd '+ divContainer.offsetLeft);
+					eliment.cordx = cordx;
+					eliment.cordy = cordy;
+					eliment.style.left= '' + cordx + 'px';
+					eliment.style.top= '' + cordy + 'px';
+
+				}
+			}
+			
+		function touchStartHandler(event) {
+			var obj = this;
+			eliment = obj;
+			console.log('touch startedd');
+		}
+
+		function touchEndHandler(event) {
+			//var obj = this;
+			console.log('touch ended');
+			if(eliment != 0)
+			{
+				//result[pos.id] = eliment.id;
+				//eliment.cordx
+				coin_id = getCoinIdFromId(eliment.id);
+				coins[coin_id].x = eliment.cordx;
+				coins[coin_id].y = eliment.cordy;
+				
+				eliment = 0;
+				checkResult();
+			}
+		}
+
+		function onWindowResize()
+		{
+			var myScreenWidth = 600;
+			if(window.innerWidth < 600)
+			{
+				myScreenWidth = window.innerWidth;
+			}
+			
+			//adjust game to less screen?
+			divContainer.style.width = myScreenWidth + 'px';
+			divContainer.style.height = (window.innerHeight-40) + 'px';
+			//alert("screen width too small, try landscape");
+			ELEMENT_WIDTH = myScreenWidth/6;
+			var elements = document.querySelectorAll('.first_row');
+			for(var i=0; i<elements.length; i++){
+				elements[i].style.width = ELEMENT_WIDTH + "px";
+				elements[i].style.height = ELEMENT_WIDTH + "px";
+				elements[i].style.left = (7+(ELEMENT_WIDTH+10)*i) + "px";
+				elements[i].style.top = (80+100-ELEMENT_WIDTH) + "px";
+			}
+			
+			elements = document.querySelectorAll('.second_row');
+			for(var i=0; i<elements.length; i++){
+				elements[i].style.width = ELEMENT_WIDTH + "px";
+				elements[i].style.height = ELEMENT_WIDTH + "px";
+				elements[i].style.left = (7+(ELEMENT_WIDTH+10)*i) + "px";
+			}
+			
+			elements = document.querySelectorAll('.third_row');
+			for(var i=0; i<elements.length; i++){
+				elements[i].style.width = ELEMENT_WIDTH + "px";
+				elements[i].style.height = ELEMENT_WIDTH + "px";
+				elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
+			}
+			
+			elements = document.querySelectorAll('.fourth_row');
+			for(var i=0; i<elements.length; i++){
+				elements[i].style.width = ELEMENT_WIDTH + "px";
+				elements[i].style.height = ELEMENT_WIDTH + "px";
+				elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
+				elements[i].style.top = (450-100+ELEMENT_WIDTH) + "px";
+			}
+			slot1.xpos = 2;
+			slot1.ypos = 73+100-ELEMENT_WIDTH;
+			slot3.xpos = 3+(ELEMENT_WIDTH+10)*2;// = {xpos:228, ypos:73};
+			slot3.ypos = 73+100-ELEMENT_WIDTH;
+
+			slot2.xpos = 2;// = {xpos:114, ypos:73};
+			slot4.xpos = 3+(ELEMENT_WIDTH+10)*2;// = {xpos:228, ypos:173};
+			//no need for y
+
+		}
+		
+		function init()
+		{
+			window.addEventListener( 'resize', onWindowResize, false );
+			divContainer = document.getElementById('id-container-div');
+			console.log(window.innerWidth);
+			divContainer.style.height = (window.innerHeight-40) + 'px';
+			if(window.innerWidth < 600)
+			{
+				//adjust game to less screen?
+				divContainer.style.width = window.innerWidth + 'px';
+				//alert("screen width too small, try landscape");
+				ELEMENT_WIDTH = window.innerWidth/6;
+				var elements = document.querySelectorAll('.first_row');
+				for(var i=0; i<elements.length; i++){
+					elements[i].style.width = ELEMENT_WIDTH + "px";
+					elements[i].style.height = ELEMENT_WIDTH + "px";
+					elements[i].style.left = (7+(ELEMENT_WIDTH+10)*i) + "px";
+					elements[i].style.top = (80+100-ELEMENT_WIDTH) + "px";
+				}
+				
+				elements = document.querySelectorAll('.second_row');
+				for(var i=0; i<elements.length; i++){
+					elements[i].style.width = ELEMENT_WIDTH + "px";
+					elements[i].style.height = ELEMENT_WIDTH + "px";
+					elements[i].style.left = (7+(ELEMENT_WIDTH+10)*i) + "px";
+				}
+				
+				elements = document.querySelectorAll('.third_row');
+				for(var i=0; i<elements.length; i++){
+					elements[i].style.width = ELEMENT_WIDTH + "px";
+					elements[i].style.height = ELEMENT_WIDTH + "px";
+					elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
+				}
+				
+				elements = document.querySelectorAll('.fourth_row');
+				for(var i=0; i<elements.length; i++){
+					elements[i].style.width = ELEMENT_WIDTH + "px";
+					elements[i].style.height = ELEMENT_WIDTH + "px";
+					elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
+					elements[i].style.top = (450-100+ELEMENT_WIDTH) + "px";
+				}
+				slot1.xpos = 2;
+				slot1.ypos = 73+100-ELEMENT_WIDTH;
+				slot3.xpos = 3+(ELEMENT_WIDTH+10)*2;// = {xpos:228, ypos:73};
+				slot3.ypos = 73+100-ELEMENT_WIDTH;
+
+				slot2.xpos = 2;// = {xpos:114, ypos:73};
+				slot4.xpos = 3+(ELEMENT_WIDTH+10)*2;// = {xpos:228, ypos:173};
+				//no need for y
+			}
+			
+			var obj1 = document.getElementById('novac-zad1-t1');
+			var obj2 = document.getElementById('novac-zad1-t2');
+			var obj5 = document.getElementById('novac-zad1-t5');
+			var obj10 = document.getElementById('novac-zad1-t10');
+			var obj20 = document.getElementById('novac-zad1-t20');
+			var obj12 = document.getElementById('novac-zad1-t2-2');
+			var obj22 = document.getElementById('novac-zad1-t1-2');
+			var obj52 = document.getElementById('novac-zad1-t1-3');
+			var obj102 = document.getElementById('novac-zad1-t5-2');
+			var obj202 = document.getElementById('novac-zad1-t10-3');
+			obj1.addEventListener('touchmove', touchMoveHandler, false);
+			obj1.addEventListener('touchend', touchEndHandler, false);
+			obj1.addEventListener('touchstart', touchStartHandler, false);
+			obj2.addEventListener('touchmove', touchMoveHandler, false);
+			obj2.addEventListener('touchend', touchEndHandler, false);
+			obj2.addEventListener('touchstart', touchStartHandler, false);
+			obj5.addEventListener('touchmove', touchMoveHandler, false);
+			obj5.addEventListener('touchend', touchEndHandler, false);
+			obj5.addEventListener('touchstart', touchStartHandler, false);
+			obj10.addEventListener('touchmove', touchMoveHandler, false);
+			obj10.addEventListener('touchend', touchEndHandler, false);
+			obj10.addEventListener('touchstart', touchStartHandler, false);
+			obj20.addEventListener('touchmove', touchMoveHandler, false);
+			obj20.addEventListener('touchend', touchEndHandler, false);
+			obj20.addEventListener('touchstart', touchStartHandler, false);
+
+			obj12.addEventListener('touchmove', touchMoveHandler, false);
+			obj12.addEventListener('touchend', touchEndHandler, false);
+			obj12.addEventListener('touchstart', touchStartHandler, false);
+			obj22.addEventListener('touchmove', touchMoveHandler, false);
+			obj22.addEventListener('touchend', touchEndHandler, false);
+			obj22.addEventListener('touchstart', touchStartHandler, false);
+			obj52.addEventListener('touchmove', touchMoveHandler, false);
+			obj52.addEventListener('touchend', touchEndHandler, false);
+			obj52.addEventListener('touchstart', touchStartHandler, false);
+			obj102.addEventListener('touchmove', touchMoveHandler, false);
+			obj102.addEventListener('touchend', touchEndHandler, false);
+			obj102.addEventListener('touchstart', touchStartHandler, false);
+			obj202.addEventListener('touchmove', touchMoveHandler, false);
+			obj202.addEventListener('touchend', touchEndHandler, false);
+			obj202.addEventListener('touchstart', touchStartHandler, false);
+		}
+
+		function checkResult()
+		{
+			if((((coins[3].x==slot1.xpos)&&(coins[3].y==slot1.ypos)) 
+				|| ((coins[9].x==slot1.xpos)&&(coins[9].y==slot1.ypos)))
+			&& (((coins[2].x==slot2.xpos)&&(coins[2].y==slot2.ypos)) 
+				|| ((coins[8].x==slot2.xpos)&&(coins[8].y==slot2.ypos)))
+			&& (((coins[3].x==slot3.xpos)&&(coins[3].y==slot3.ypos)) 
+				|| ((coins[9].x==slot3.xpos)&&(coins[9].y==slot3.ypos)))
+			&& (((coins[2].x==slot4.xpos)&&(coins[2].y==slot4.ypos)) 
+				|| ((coins[8].x==slot4.xpos)&&(coins[8].y==slot4.ypos))))
+			{
+				if(!bravoShown)
+				{
+					alert('BRAVO PETRA!!!');
+					bravoShown = true;
+				}
+			}
+		}
+		
+		function getSnapPosition(cordx,cordy)
+		{
+			if((cordx<slot1.xpos+30)&&(cordx>slot1.xpos-30) && (cordy<slot1.ypos+30)&&(cordy>slot1.ypos-30))
+			{
+				return {x:slot1.xpos,y:slot1.ypos,id:0};
+			}
+			if((cordx<slot2.xpos+30)&&(cordx>slot2.xpos-30) && (cordy<slot2.ypos+30)&&(cordy>slot2.ypos-30))
+			{
+				return {x:slot2.xpos,y:slot2.ypos,id:1};
+			}
+			if((cordx<slot3.xpos+30)&&(cordx>slot3.xpos-30) && (cordy<slot3.ypos+30)&&(cordy>slot3.ypos-30))
+			{
+				return {x:slot3.xpos,y:slot3.ypos,id:2};
+			}
+			if((cordx<slot4.xpos+30)&&(cordx>slot4.xpos-30) && (cordy<slot4.ypos+30)&&(cordy>slot4.ypos-30))
+			{
+				return {x:slot4.xpos,y:slot4.ypos,id:3};
+			}
+			
+			return {x:-10,y:0};
+		}
+		function getCoinIdFromId(text_id)
+		{
+			if(text_id == 'novac-zad1-t1') return 0;
+			if(text_id == 'novac-zad1-t2') return 1;
+			if(text_id == 'novac-zad1-t5') return 2;
+			if(text_id == 'novac-zad1-t10') return 3;
+			if(text_id == 'novac-zad1-t20') return 4;
+			if(text_id == 'novac-zad1-t2-2') return 5;
+			if(text_id == 'novac-zad1-t1-2') return 6;
+			if(text_id == 'novac-zad1-t1-3') return 7;
+			if(text_id == 'novac-zad1-t5-2') return 8;
+			if(text_id == 'novac-zad1-t10-3') return 9;
+		}
+		function goingUp()
+		{
+			//check all coins position :/
+			if(eliment != 0)
+			{
+				//result[pos.id] = eliment.id;
+				//eliment.cordx
+				coin_id = getCoinIdFromId(eliment.id);
+				coins[coin_id].x = eliment.cordx;
+				coins[coin_id].y = eliment.cordy;
+				
+				eliment = 0;
+				checkResult();
+			}
+		}
+		function goingDown(el)
+		{
+			console.log('hehe');
+			eliment = el;
+		}
+		
+		function goingMove(ev)
+		{
+			var eventt = ev;
+			
+			if(eliment != 0)
+			{
+				//element is being moved
+				var cordx = 0;
+				var cordy = 0;
+				
+				coinsaremoved = true;
+				
+				if (!eventt) {
+					eventt = window.event;
+				}
+				if (eventt.pageX || eventt.pageY){
+					cordx = eventt.pageX - (ELEMENT_WIDTH/2+5) - divContainer.offsetLeft;
+					cordy = eventt.pageY - (ELEMENT_WIDTH/2+10) - divContainer.offsetTop;
+				}
+				else if (eventt.clientX || eventt.clientY){
+					cordx = eventt.clientX - (ELEMENT_WIDTH/2+5) - divContainer.offsetLeft;
+					cordy = eventt.clientY - (ELEMENT_WIDTH/2+10) - divContainer.offsetTop;
+				}
+
+				var pos = getSnapPosition(cordx,cordy);
+				if(pos.x!=-10)
+				{
+					cordx = pos.x;
+					cordy = pos.y;
+					
+					console.log('snapping element: ' + eliment.id + ' to position: ' + pos.id);
+					//result[pos.id] = eliment.id;
+				}
+				
+				console.log('asdasasd');
+				eliment.cordx = cordx;
+				eliment.cordy = cordy;
+				eliment.style.left= '' + cordx + 'px';
+				eliment.style.top= '' + cordy + 'px';
+			}
+		}
+		</script>
+	</head>
+	<body onload='init();' onmouseup='goingUp();' onmousemove='goingMove(event);'>
+	
+	<div id="id-container-div" class="c_container_div" style="">
+		<br>
+		У означена поља стави новчиће који дају тачан збир.<br>
+		<br>
+		<div id='novac-zad1-f1' class='square first_row' style='left:7px;'></div>
+		<div id='novac-zad1-f2' class='token first_row' style='cursor:default; left:115px; background: url("/matematika/media/images/plus.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-f3' class='square first_row' style='left:230px;'></div>
+		<div id='novac-zad1-f4' class='token first_row' style='cursor:default; left:345px; background: url("/matematika/media/images/equals.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-f5' class='token first_row' style='cursor:default; left:460px; background: url("/matematika/media/images/novac_20.png"); background-size: 100%;'></div>
+
+		<div id='novac-zad1-f6' class='square second_row' style='left:7px;'></div>
+		<div id='novac-zad1-f7' class='token second_row' style='cursor:default; left:115px; background: url("/matematika/media/images/plus.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-f8' class='square second_row' style='left:230px;'></div>
+		<div id='novac-zad1-f9' class='token second_row' style='cursor:default; left:345px; background: url("/matematika/media/images/equals.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-f10' class='token second_row' style='cursor:default; left:460px; background: url("/matematika/media/images/novac_10.png"); background-size: 100%;'></div>
+
+		<div id='novac-zad1-t20' class='token third_row' onmousedown='goingDown(this);' style='left:0px; background: url("/matematika/media/images/novac_20.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-t2' class='token third_row' onmousedown='goingDown(this);' style='left:115px; background: url("/matematika/media/images/novac_2.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-t10' class='token third_row' onmousedown='goingDown(this);' style='left:230px; background: url("/matematika/media/images/novac_10.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-t5' class='token third_row' onmousedown='goingDown(this);' style='left:345px; background: url("/matematika/media/images/novac_5.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-t1' class='token third_row' onmousedown='goingDown(this);' style='left:454px; background: url("/matematika/media/images/novac_1.png"); background-size: 100%;'></div>
+
+		<div id='novac-zad1-t2-2' class='token fourth_row' onmousedown='goingDown(this);' style='left:0px; background: url("/matematika/media/images/novac_2.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-t1-2' class='token fourth_row' onmousedown='goingDown(this);' style='left:115px; background: url("/matematika/media/images/novac_1.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-t1-3' class='token fourth_row' onmousedown='goingDown(this);' style='left:230px; background: url("/matematika/media/images/novac_1.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-t5-2' class='token fourth_row' onmousedown='goingDown(this);' style='left:345px; background: url("/matematika/media/images/novac_5.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-t10-3' class='token fourth_row' onmousedown='goingDown(this);' style='left:454px; background: url("/matematika/media/images/novac_10.png"); background-size: 100%;'></div>
+		
+	</div>
+		
+	<div id="id-container-div" class="c_container_div" style="width:100px">
+	<center><a href="novac.html">назад</a><center>
+	</div>
+	
+	</body>
+</html>

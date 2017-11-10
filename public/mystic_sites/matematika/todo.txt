@@ -1,0 +1,8 @@
+math todo
+
+- make menu 1
+- make first grade submenu
+- make click sound
+- make first game
+- make language internationalization
+- make screen orientation

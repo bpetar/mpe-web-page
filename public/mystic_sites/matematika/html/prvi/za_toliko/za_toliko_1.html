@@ -1,0 +1,225 @@
+<html>
+	<head>
+		<title>Пукни балончиће</title>
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<style>
+			body { 
+				margin: 0; 
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 128%;
+			}
+			
+			.c_container_div
+			{
+				//border: 2px solid green;
+				width: 600px;
+				margin: 0 auto;
+				//padding: 5px;
+				position: relative;
+			}
+			
+			.token { 
+				width:100px;
+				height:100px;
+				position:absolute;
+				margin:7px;
+				cursor:pointer;
+				-webkit-tap-highlight-color:transparent;
+			}
+
+		</style>
+		<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-5">
+		
+		<script>
+		var eliment = 0;
+		var coinsaremoved = false;
+		var ELEMENT_WIDTH = 100;
+		var bravoShown = false;
+		var result = 0;
+		var bubbles = [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];
+		var audio_pop = 0;
+		var touch = false;
+		var resultTimoutHandler = 0;
+		
+		audio_pop = document.createElement('audio');
+		var source_pop = document.createElement('source');
+		source_pop.src = '/matematika/media/sounds/pop.mp3';
+		audio_pop.appendChild(source_pop);
+
+		var divContainer = document.getElementById('id-container-div');
+		
+		function touchStartHandler(event) {
+			var obj = this;
+			if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
+			console.log('huhu');
+			touch = true;
+			eliment = obj;
+			eliment.style.background = 'url("/matematika/media/images/bubble_burst.png")';
+			eliment.style.backgroundSize = '100%';
+			//playSoundPop();
+			audio_pop.volume = 1;
+			audio_pop.currentTime = 0;
+			audio_pop.play();
+			//eliment.parentElement.removeChild(eliment);
+			setTimeout(function(){ 
+				eliment.style.display= 'none';				
+				result++;
+			}, 130);
+			resultTimoutHandler = setTimeout(function(){ 
+				checkResult();
+			}, 1200);
+
+		}
+
+		function onWindowResize()
+		{
+			var myScreenWidth = 600;
+			if(window.innerWidth < 600)
+			{
+				myScreenWidth = window.innerWidth;
+			}
+			
+			//adjust game to less screen? ui.
+			divContainer.style.width = myScreenWidth + 'px';
+			divContainer.style.height = (window.innerHeight-40) + 'px';
+
+			ELEMENT_WIDTH = myScreenWidth/6;
+
+			elements = document.querySelectorAll('.token');
+			for(var i=0; i<5; i++){
+				elements[i].style.width = ELEMENT_WIDTH + "px";
+				elements[i].style.height = ELEMENT_WIDTH + "px";
+				elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
+				elements[i].style.top = (120) + "px";
+			}
+			for(var i=5; i<10; i++){
+				elements[i].style.width = ELEMENT_WIDTH + "px";
+				elements[i].style.height = ELEMENT_WIDTH + "px";
+				elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-5)) + "px";
+				elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
+			}
+
+		}
+		
+		function init()
+		{
+			audio_pop.volume = 0.001;
+			audio_pop.play();
+			window.addEventListener( 'resize', onWindowResize, false );
+			divContainer = document.getElementById('id-container-div');
+			console.log(window.innerWidth);
+			divContainer.style.height = (window.innerHeight-40) + 'px';
+			if(window.innerWidth < 600)
+			{
+				//adjust game to less screen?
+				divContainer.style.width = window.innerWidth + 'px';
+				//alert("screen width too small, try landscape");
+				ELEMENT_WIDTH = window.innerWidth/6;
+				
+				elements = document.querySelectorAll('.token');
+				for(var i=0; i<5; i++){
+					elements[i].style.width = ELEMENT_WIDTH + "px";
+					elements[i].style.height = ELEMENT_WIDTH + "px";
+					elements[i].style.left = ((ELEMENT_WIDTH+10)*i) + "px";
+					elements[i].style.top = (120) + "px";
+				}
+				for(var i=5; i<10; i++){
+					elements[i].style.width = ELEMENT_WIDTH + "px";
+					elements[i].style.height = ELEMENT_WIDTH + "px";
+					elements[i].style.left = ((ELEMENT_WIDTH+10)*(i-5)) + "px";
+					elements[i].style.top = (ELEMENT_WIDTH+130) + "px";
+				}
+
+			}
+			
+			var obj1 = document.getElementById('za-toliko-zad1-1');
+			var obj2 = document.getElementById('za-toliko-zad1-2');
+			var obj3 = document.getElementById('za-toliko-zad1-3');
+			var obj4 = document.getElementById('za-toliko-zad1-4');
+			var obj5 = document.getElementById('za-toliko-zad1-5');
+			var obj6 = document.getElementById('za-toliko-zad1-6');
+			var obj7 = document.getElementById('za-toliko-zad1-7');
+			var obj8 = document.getElementById('za-toliko-zad1-8');
+			var obj9 = document.getElementById('za-toliko-zad1-9');
+			var obj10 = document.getElementById('za-toliko-zad1-10');
+			
+			obj1.addEventListener('touchstart', touchStartHandler, false);
+			obj2.addEventListener('touchstart', touchStartHandler, false);
+			obj3.addEventListener('touchstart', touchStartHandler, false);
+			obj4.addEventListener('touchstart', touchStartHandler, false);
+			obj5.addEventListener('touchstart', touchStartHandler, false);
+
+			obj6.addEventListener('touchstart', touchStartHandler, false);
+			obj7.addEventListener('touchstart', touchStartHandler, false);
+			obj8.addEventListener('touchstart', touchStartHandler, false);
+			obj9.addEventListener('touchstart', touchStartHandler, false);
+			obj10.addEventListener('touchstart', touchStartHandler, false);
+		}
+
+		function checkResult()
+		{
+			console.log('checkResult huhu');
+			if(result == 6)
+			{
+				if(!bravoShown)
+				{
+					alert('BRAVO PETRA!!!');
+					bravoShown = true;
+				}
+			}
+		}
+		
+		function goingDown(el)
+		{
+			if(!touch)
+			{
+				if(resultTimoutHandler != 0) clearTimeout(resultTimoutHandler);
+				console.log('hehe');
+				eliment = el;
+				eliment.style.background = 'url("/matematika/media/images/bubble_burst.png")';
+				eliment.style.backgroundSize = '100%';
+				//playSoundPop();
+				audio_pop.volume = 1;
+				audio_pop.currentTime = 0;
+				audio_pop.play();
+				//eliment.parentElement.removeChild(eliment);
+				setTimeout(function(){ 
+					eliment.style.display= 'none';				
+					result++;
+				}, 130);
+				resultTimoutHandler = setTimeout(function(){ 
+					checkResult();
+				}, 1200);
+			}
+			
+		}
+		
+		</script>
+	</head>
+	<body onload='init();' >
+	
+	<div id="id-container-div" class="c_container_div" style="">
+		<br>
+		Милош је пукнуо 5 балончића, помози Сари да пукне један више од Милоша.<br>
+		<br>
+
+		<div id='za-toliko-zad1-1' value=1 class='token' onmousedown='goingDown(this);' style='left:0px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-2' value=2 class='token' onmousedown='goingDown(this);' style='left:115px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-3' value=3 class='token' onmousedown='goingDown(this);' style='left:230px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-4' value=4 class='token' onmousedown='goingDown(this);' style='left:345px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-5' value=5 class='token' onmousedown='goingDown(this);' style='left:454px; top:120px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
+		
+		<div id='za-toliko-zad1-6' value=1 class='token' onmousedown='goingDown(this);' style='left:0px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-7' value=2 class='token' onmousedown='goingDown(this);' style='left:115px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-8' value=3 class='token' onmousedown='goingDown(this);' style='left:230px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-9' value=4 class='token' onmousedown='goingDown(this);' style='left:345px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
+		<div id='za-toliko-zad1-10' value=5 class='token' onmousedown='goingDown(this);' style='left:454px; top:230px; background: url("/matematika/media/images/bubble.png"); background-size: 100%;'></div>
+		
+	</div>
+		
+	<div id="id-container-div" class="c_container_div" style="width:100px">
+	<center><a href="za_toliko.html">назад</a>&nbsp;&nbsp;&nbsp;<a href="./za_toliko_1.html">поново</a> <center>
+	</div>
+	
+	</body>
+</html>

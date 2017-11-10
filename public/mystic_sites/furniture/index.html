@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Furniture Customization Demo</title>
+
+	<style>
+		
+		.c-div-big {
+			width:100%;
+		}
+		
+		.c-div-content {
+			width:980px;
+			margin: 0 auto;
+		}
+		
+		.c-header {
+			height: 64px;
+			padding-top: 6px;
+		}
+		
+		.headerTitle {
+			text-align: left;
+			color: gray;
+			font-family:sans-serif;
+		}
+	
+		.c-menu {
+			float: right;
+		}
+
+		.c-li-menu-item {
+			display: inline;
+		}
+
+		.c-span-menu-item {
+			border-bottom:solid lightblue 2px;
+			color: blue;
+			padding: 10px 20px;
+			text-decoration: none;
+			border-radius: 4px 4px 0 0;
+			font-family:sans-serif;
+			cursor:pointer;
+		}
+
+		.c-menu-option-selected {
+			background-color: lightblue;
+		}
+		
+		.c-header-blue-line {
+			background-color: lightblue;
+			height:10px;
+			margin-top:-23px;
+			//margin-bottom:10px;
+		}
+		
+		.c-shelf-container3d {
+			min-height: 450px;
+		}
+		
+		.c-sofa-container3d {
+			min-height: 450px;
+		}
+		
+		.c-settings-div {
+		    margin-top:20px;
+			height:300px;
+			border: 0px solid red;
+			display:block;
+		}
+		
+		.c-settings-block{
+		    height:200px;
+			width:310px;
+			float:left;
+			border:solid grey 1px;
+		}
+		
+		.c-form-shelf-settings {
+			margin-left: 8px;
+		}
+
+		.c-span-shelf-settings-header {
+			position:relative;
+			background-color:white;
+			color: black;
+			font-size:large;
+			font-family:sans-serif;
+			padding:2px;
+			padding-left:4px;
+			left:8px;
+			top:-10px;
+		}
+		
+		.c-span-shelf-settings-line {
+			display: block;
+		}
+		
+		.c-div-shelf-settings-tex-row {
+			padding-left:8px;
+			padding-bottom:8px;
+		}
+		
+		.c-span-shelf-settings-line label {
+			display: inline-block;
+			width: 108px;
+			font-family:sans-serif;
+			
+		}
+		
+		.c-input-shelf-settings-texture {
+			height: 50px;
+			width: 50px;
+			cursor:pointer;
+			margin-left:5px;
+		}
+		
+		.c-footer-div {
+			display: block;
+			border:solid red 0px;
+			text-align:center;
+		}
+		
+		
+	</style>
+	
+	<!-- links to three.js library -->
+	<script src="source/three.min.new.js"></script>
+	<!-- add for mouse controls, path to this lib could be Three.js library folder/examples/js/controls -->
+	<script src="source/controls/OrbitControls.js"></script>
+	<!-- links to furniture code -->
+	<script src="source/furniture.js"></script>
+	<!-- links to ui code -->
+	<script src="source/ui.js"></script>
+	<!-- links to util code -->
+	<script src="source/util.js"></script>
+	
+	<script>
+		function quickTest() {
+			console.log('use this for quick testing');
+		};
+	</script>	
+</head>
+
+<body onload="mainy()">
+
+<div class="c-div-big">
+<div class="c-div-content">
+
+	<div class="c-header" id="id-header">
+		<ul class="c-menu" id="menu">
+		 <li class="c-li-menu-item" ><span id="id-menu-shelf" onclick="goToShelfTab()" class="c-span-menu-item c-menu-option-selected">Shelf</span></li>
+		 <li class="c-li-menu-item" ><span id="id-menu-sofa" onclick="goToSofaTab()" class="c-span-menu-item" >Sofa</span></li>
+		 <li class="c-li-menu-item" ><span id="id-menu-kitchen" onclick="goToKitchenTab()" class="c-span-menu-item ">Kitchen</span></li>
+		 <li class="c-li-menu-item" ><span id="id-menu-contact" onclick="goToContactTab()" class="c-span-menu-item" >Contact</span></li>
+		</ul>  
+
+		<h3 class="headerTitle">Furniture 3D</h3>
+		
+	</div>
+	
+	<div class="c-header-blue-line"></div>
+
+	<!-- shelf tab div -->
+	<div id="id-shelf-container">
+	  
+		<div class="c-shelf-container3d" id="id-container3d"></div>
+	 
+		<div id="id-settings" class="c-settings-div">
+			<div id="id-settings-dim" class="c-settings-block" style="margin-right:20px;">
+			    <span class="c-span-shelf-settings-header" style=""> Customize Dimensions:</span>
+				<form class="c-form-shelf-settings" id="settingsForm">
+					<span class="c-span-shelf-settings-line"><label for="width">Width:</label>   <input type="number" name="width" id="id-input-shelf-width" value="60" onchange="changeWidth()" ></span>
+					<span class="c-span-shelf-settings-line"><label for="height">Height:</label>  <input type="number" name="height" id="id-input-shelf-height" value="100" onchange="changeHeight()"></span>
+					<span class="c-span-shelf-settings-line"><label for="depth">Depth:</label>   <input type="number" name="depth" id="id-input-shelf-depth" value="30" onchange="changeDepth()"></span>
+					<span class="c-span-shelf-settings-line"><label for="rows">Rows:</label>    <input type="number" name="rows" id="id-input-shelf-rows" value="2" onchange="changeRows()"></span>
+					<span class="c-span-shelf-settings-line"><label for="columns">Columns:</label> <input type="number" name="columns" id="id-input-shelf-columns" value="1" onchange="changeColumns()"></span>
+					<span class="c-span-shelf-settings-line"><label for="h_thicness">H-Thicness:</label> <input type="number" name="h_thicness" id="id-input-shelf-h_thicness" value="3" onchange="changePlankThicknessHorizontal()"></span>
+					<span class="c-span-shelf-settings-line"><label for="v_thicness">V-Thicness:</label> <input type="number" name="v_thicness" id="id-input-shelf-v_thicness" value="3" onchange="changePlankThicknessVertical()"></span>
+				</form>
+			</div>
+
+			<div id="id-settings-tex" class="c-settings-block" style="margin-right:20px;">
+                <span class="c-span-shelf-settings-header"	 style="">Side Textures:</span>
+				
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-sides1" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_1.jpg');" type="button" onclick="changeTexture('media/wood_tex_1.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_2.jpg');" type="button" onclick="changeTexture('media/wood_tex_2.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_3.jpg');" type="button" onclick="changeTexture('media/wood_tex_3.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_4.jpg');" type="button" onclick="changeTexture('media/wood_tex_4.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_5.jpg');" type="button" onclick="changeTexture('media/wood_tex_5.jpg')"></input>
+				</div>
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-sides2" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_6.jpg');" type="button" onclick="changeTexture('media/wood_tex_6.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_7.jpg');" type="button" onclick="changeTexture('media/wood_tex_7.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_8.jpg');" type="button" onclick="changeTexture('media/wood_tex_8.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_9.jpg');" type="button" onclick="changeTexture('media/wood_tex_9.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_10.jpg');" type="button" onclick="changeTexture('media/wood_tex_10.jpg')"></input>
+				</div>
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-sides3" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_11.jpg');" type="button" onclick="changeTexture('media/wood_tex_11.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_12.jpg');" type="button" onclick="changeTexture('media/wood_tex_12.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_1.jpg');" type="button" onclick="changeTexture('media/wood_tex_1.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_2.jpg');" type="button" onclick="changeTexture('media/wood_tex_2.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_3.jpg');" type="button" onclick="changeTexture('media/wood_tex_3.jpg')"></input>
+				</div>
+			</div>
+
+			<div id="id-setting-tex2" class="c-settings-block" style="">
+			    <span class="c-span-shelf-settings-header" style="">Stripe Textures:</span>	
+
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-stripes1" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_1.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_1.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_2.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_2.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_3.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_3.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_4.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_4.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_5.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_5.jpg')"></input>
+				</div>
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-stripes2" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_6.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_6.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_7.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_7.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_8.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_8.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_9.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_9.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_10.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_10.jpg')"></input>
+				</div>
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-stripes3" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_11.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_11.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_12.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_12.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_1.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_1.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_2.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_2.jpg')"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/wood_tex_3.jpg');" type="button" onclick="changeStripeTexture('media/wood_tex_3.jpg')"></input>
+				</div>
+
+			</div>
+		</div>
+				
+	</div>
+	
+	<!-- sofa tab div -->
+	<div id="id-sofa-container" style="display:none;">
+	  
+		<div class="c-sofa-container3d" style="position:relative;" id="id-sofa-container3d">
+			<input class="c-input-shelf-settings-texture" style="position:absolute;right:60px; background-image:url('media/right.png');" type="button" onclick="sofaAnim2()"></input>
+			<input class="c-input-shelf-settings-texture" style="position:absolute;right:0px; background-image:url('media/up.png');" type="button" onclick="sofaAnim1()"></input>
+		</div>
+
+		<div id="id-settings" class="c-settings-div">
+		
+			<div id="id-sofa-settings-tex1" class="c-settings-block" style="margin-right:20px;">
+                <span class="c-span-shelf-settings-header"	 style="">Base Textures:</span>
+				
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-sides1" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_1.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_1.jpg',SOFA_PART_BASE)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_2.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_2.jpg',SOFA_PART_BASE)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_3.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_3.jpg',SOFA_PART_BASE)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_4.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_4.jpg',SOFA_PART_BASE)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_5.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_5.jpg',SOFA_PART_BASE)"></input>
+				</div>
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-sides2" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_6.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_6.jpg',SOFA_PART_BASE)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_7.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_7.jpg',SOFA_PART_BASE)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_8.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_8.jpg',SOFA_PART_BASE)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_9.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_9.jpg',SOFA_PART_BASE)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_10.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_10.jpg',SOFA_PART_BASE)"></input>
+				</div>
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-sides3" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_11.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_11.jpg',SOFA_PART_BASE)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_12.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_12.jpg',SOFA_PART_BASE)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_13.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_13.jpg',SOFA_PART_BASE)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_14.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_14.jpg',SOFA_PART_BASE)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_15.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_15.jpg',SOFA_PART_BASE)"></input>
+				</div>
+			</div>
+			
+			<div id="id-sofa-settings-tex2" class="c-settings-block" style="margin-right:20px;">
+                <span class="c-span-shelf-settings-header"	 style="">Seat Textures:</span>
+				
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-sides1" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_1.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_1.jpg',SOFA_PART_SEAT)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_2.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_2.jpg',SOFA_PART_SEAT)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_3.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_3.jpg',SOFA_PART_SEAT)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_4.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_4.jpg',SOFA_PART_SEAT)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_5.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_5.jpg',SOFA_PART_SEAT)"></input>
+				</div>
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-sides2" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_6.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_6.jpg',SOFA_PART_SEAT)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_7.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_7.jpg',SOFA_PART_SEAT)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_8.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_8.jpg',SOFA_PART_SEAT)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_9.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_9.jpg',SOFA_PART_SEAT)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_10.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_10.jpg',SOFA_PART_SEAT)"></input>
+				</div>
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-sides3" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_11.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_11.jpg',SOFA_PART_SEAT)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_12.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_12.jpg',SOFA_PART_SEAT)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_13.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_13.jpg',SOFA_PART_SEAT)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_14.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_14.jpg',SOFA_PART_SEAT)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_15.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_15.jpg',SOFA_PART_SEAT)"></input>
+				</div>
+			</div>
+			
+			<div id="id-sofa-settings-tex3" class="c-settings-block" style="">
+                <span class="c-span-shelf-settings-header"	 style="">Cushion Textures:</span>
+				
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-sides1" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_1.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_1.jpg',SOFA_PART_CUSHION)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_2.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_2.jpg',SOFA_PART_CUSHION)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_3.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_3.jpg',SOFA_PART_CUSHION)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_4.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_4.jpg',SOFA_PART_CUSHION)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_5.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_5.jpg',SOFA_PART_CUSHION)"></input>
+				</div>
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-sides2" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_6.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_6.jpg',SOFA_PART_CUSHION)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_7.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_7.jpg',SOFA_PART_CUSHION)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_8.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_8.jpg',SOFA_PART_CUSHION)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_9.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_9.jpg',SOFA_PART_CUSHION)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_10.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_10.jpg',SOFA_PART_CUSHION)"></input>
+				</div>
+				<div class="c-div-shelf-settings-tex-row" id="id-div-settings-tex-sides3" style="">
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_11.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_11.jpg',SOFA_PART_CUSHION)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_12.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_12.jpg',SOFA_PART_CUSHION)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_13.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_13.jpg',SOFA_PART_CUSHION)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_14.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_14.jpg',SOFA_PART_CUSHION)"></input>
+					<input class="c-input-shelf-settings-texture" style="background-image:url('media/sofa_tex_15.jpg');" type="button" onclick="changeSofaTexture('./media/sofa_tex_15.jpg',SOFA_PART_CUSHION)"></input>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	
+	
+	<!-- kitchen tab div -->
+	<div id="id-kitchen-container" style="display:none;">
+	  
+		<div id="id-kitchen-container3d" style="height:500px;"><br>TODO</div>
+
+	</div>
+	
+	<!-- contact tab div -->
+	<div id="id-contact-container" style="display:none;">
+	  
+		<div id="id-contact-container3d" style="height:500px;"><br>info@mystic-peanut.com</div>
+
+	</div>
+	
+	<div id="id-footer" class="c-footer-div">
+		Copyright MPE 2015
+	</div>
+
+</div>
+</div>
+	
+</body>
+
+</html>

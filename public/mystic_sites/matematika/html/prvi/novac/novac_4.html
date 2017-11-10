@@ -1,0 +1,392 @@
+<html>
+	<head>
+		<title>Исти џепарац</title>
+		<meta name="viewport" content="width=device-width,user-scalable=no">
+		<meta HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-5">
+		<style>
+			body { 
+				margin: 0; 
+				font-family: Arial, Helvetica, sans-serif;
+				font-size: 128%;
+			}
+			
+			.c_container_div
+			{
+				//border: 2px solid green;
+				width: 600px;
+				margin: 0 auto;
+				//padding: 5px;
+				position: relative;
+			}
+			
+			.pocket { 
+				//background-color: white;
+				//border: 2px solid yellow;
+				//border-radius:10px;
+				width:200px;
+				height:233px;
+				position:absolute;
+				//margin:5px;
+			}
+			
+			.token { 
+				width:100px;
+				height:100px;
+				position:absolute;
+				margin:7px;
+				cursor:pointer;
+			}
+			
+			.first_row {
+				top:80px;
+			}
+			
+			.second_row {
+				top:330px;
+			}
+			
+			.third_row {
+				top:140px;
+			}
+			
+			.fourth_row {
+				top:350px;
+			}
+
+			.fifth_row {
+				top:430px;
+			}
+
+		</style>
+		
+		<script>
+		var eliment = 0;
+		var coinsaremoved = false;
+		var ELEMENT_WIDTH = 100;
+		var POCKET_WIDTH = 200;
+		var POCKET_HEIGHT = 233;
+		var bravoShown = false;
+		var result = [0,0,0,0,0];
+		var coins = [{x:0,y:0},{x:0,y:0},{x:0,y:0},{x:0,y:0}];
+		/*var slot1 = {xpos:2, ypos:73};
+		var slot2 = {xpos:2, ypos:183};
+		var slot3 = {xpos:228, ypos:73};
+		var slot4 = {xpos:228, ypos:183};*/
+		var divContainer = document.getElementById('id-container-div');
+		
+		function touchMoveHandler(event) {
+			
+			event.preventDefault(); //this should kill reload
+			
+			var cordx = 0;
+			var cordy = 0;
+				// If there's exactly one finger inside this element
+				if (event.targetTouches.length == 1) {
+					var touch = event.targetTouches[0];
+					// Place element where the finger is
+					cordx = touch.pageX - (ELEMENT_WIDTH/2+5) - divContainer.offsetLeft;
+					cordy = touch.pageY - (ELEMENT_WIDTH/2+10) - divContainer.offsetTop;
+					coinsaremoved = true;
+					/*var pos = getSnapPosition(cordx,cordy);
+					if(pos.x!=-10)
+					{
+						cordx = pos.x;
+						cordy = pos.y;
+						
+						console.log('snapping element: ' + eliment.id + ' to position: ' + pos.id);
+						//result[pos.id] = eliment.id;
+					}*/
+					
+					console.log('touch moving asdasasd '+ divContainer.offsetLeft);
+					eliment.cordx = cordx;
+					eliment.cordy = cordy;
+					eliment.style.left= '' + cordx + 'px';
+					eliment.style.top= '' + cordy + 'px';
+
+				}
+			}
+			
+		function touchStartHandler(event) {
+			var obj = this;
+			eliment = obj;
+			console.log('touch startedd');
+		}
+
+		function touchEndHandler(event) {
+			//var obj = this;
+			console.log('touch ended');
+			if(eliment != 0)
+			{
+				//result[pos.id] = eliment.id;
+				//eliment.cordx
+				coin_id = getCoinIdFromId(eliment.id);
+				coins[coin_id].x = eliment.cordx;
+				coins[coin_id].y = eliment.cordy;
+				
+				eliment = 0;
+				checkResult();
+			}
+		}
+
+		function onWindowResize()
+		{
+			var myScreenWidth = 600;
+			if(window.innerWidth < 600)
+			{
+				myScreenWidth = window.innerWidth;
+			}
+			
+			//adjust game to less screen?
+			divContainer.style.width = myScreenWidth + 'px';
+			divContainer.style.height = (window.innerHeight-40) + 'px';
+			//alert("screen width too small, try landscape");
+			ELEMENT_WIDTH = myScreenWidth/6;
+			POCKET_WIDTH = myScreenWidth/3;
+			POCKET_HEIGHT = (POCKET_WIDTH*233)/200;
+			var elements = document.querySelectorAll('.first_row');
+			for(var i=0; i<elements.length; i++){
+				elements[i].style.width = POCKET_WIDTH + "px";
+				elements[i].style.height = POCKET_HEIGHT + "px";
+				elements[i].style.left = POCKET_WIDTH + "px";
+				//elements[i].style.top = (140-200+ELEMENT_WIDTH) + "px";
+			}
+			
+			elements = document.querySelectorAll('.second_row');
+			for(var i=0; i<elements.length; i++){
+				elements[i].style.width = POCKET_WIDTH + "px";
+				elements[i].style.height = POCKET_HEIGHT + "px";
+				elements[i].style.left = POCKET_WIDTH + "px";
+			}
+			
+			elements = document.querySelectorAll('.third_row');
+			for(var i=0; i<elements.length; i++){
+				elements[i].style.width = ELEMENT_WIDTH + "px";
+				elements[i].style.height = ELEMENT_WIDTH + "px";
+				elements[i].style.left = (POCKET_WIDTH-5) + "px";
+				elements[i].style.top = (140-(200-POCKET_WIDTH)/4) + "px";
+			}
+			
+			elements = document.querySelectorAll('.fourth_row');
+			for(var i=0; i<elements.length; i++){
+				elements[i].style.width = ELEMENT_WIDTH + "px";
+				elements[i].style.height = ELEMENT_WIDTH + "px";
+				elements[i].style.left = (POCKET_WIDTH +((85-(200-POCKET_WIDTH)/2)*i)) + "px";
+				elements[i].style.top = (350-(200-POCKET_WIDTH)/8) + "px";
+			}
+
+			elements = document.querySelectorAll('.fifth_row');
+			for(var i=0; i<elements.length; i++){
+				elements[i].style.width = ELEMENT_WIDTH + "px";
+				elements[i].style.height = ELEMENT_WIDTH + "px";
+				elements[i].style.left = (POCKET_WIDTH +(45-(200-POCKET_WIDTH)/4)) + "px";
+				elements[i].style.top = (430-(200-POCKET_WIDTH)/2) + "px";
+			}
+
+		}
+		
+		function init()
+		{
+			window.addEventListener( 'resize', onWindowResize, false );
+			divContainer = document.getElementById('id-container-div');
+			console.log(window.innerWidth);
+			divContainer.style.height = (window.innerHeight-40) + 'px';
+			if(window.innerWidth < 600)
+			{
+				//adjust game to less screen?
+				divContainer.style.width = window.innerWidth + 'px';
+				divContainer.style.height = (window.innerHeight-40) + 'px';
+				//alert("screen width too small, try landscape");
+				ELEMENT_WIDTH = window.innerWidth/6;
+				POCKET_WIDTH = window.innerWidth/3;
+				POCKET_HEIGHT = (POCKET_WIDTH*233)/200;
+				var elements = document.querySelectorAll('.first_row');
+				for(var i=0; i<elements.length; i++){
+					elements[i].style.width = POCKET_WIDTH + "px";
+					elements[i].style.height = POCKET_HEIGHT + "px";
+					elements[i].style.left = POCKET_WIDTH + "px";
+					//elements[i].style.top = (140-200+ELEMENT_WIDTH) + "px";
+				}
+				
+				elements = document.querySelectorAll('.second_row');
+				for(var i=0; i<elements.length; i++){
+					elements[i].style.width = POCKET_WIDTH + "px";
+					elements[i].style.height = POCKET_HEIGHT + "px";
+					elements[i].style.left = POCKET_WIDTH + "px";
+				}
+				
+				elements = document.querySelectorAll('.third_row');
+				for(var i=0; i<elements.length; i++){
+					elements[i].style.width = ELEMENT_WIDTH + "px";
+					elements[i].style.height = ELEMENT_WIDTH + "px";
+					elements[i].style.left = (POCKET_WIDTH-5) + "px";
+					elements[i].style.top = (140-(200-POCKET_WIDTH)/4) + "px";
+				}
+				
+				elements = document.querySelectorAll('.fourth_row');
+				for(var i=0; i<elements.length; i++){
+					elements[i].style.width = ELEMENT_WIDTH + "px";
+					elements[i].style.height = ELEMENT_WIDTH + "px";
+					elements[i].style.left = (POCKET_WIDTH +((85-(200-POCKET_WIDTH)/2)*i)) + "px";
+					elements[i].style.top = (350-(200-POCKET_WIDTH)/8) + "px";
+				}
+
+				elements = document.querySelectorAll('.fifth_row');
+				for(var i=0; i<elements.length; i++){
+					elements[i].style.width = ELEMENT_WIDTH + "px";
+					elements[i].style.height = ELEMENT_WIDTH + "px";
+					elements[i].style.left = (POCKET_WIDTH +(45-(200-POCKET_WIDTH)/4)) + "px";
+					elements[i].style.top = (430-(200-POCKET_WIDTH)/2) + "px";
+				}
+			}
+			
+			var obj1 = document.getElementById('novac-zad1-t1');
+			var obj2 = document.getElementById('novac-zad1-t2');
+			var obj5 = document.getElementById('novac-zad1-t5');
+			var obj12 = document.getElementById('novac-zad1-t2-1');
+			obj1.addEventListener('touchmove', touchMoveHandler, false);
+			obj1.addEventListener('touchend', touchEndHandler, false);
+			obj1.addEventListener('touchstart', touchStartHandler, false);
+			obj2.addEventListener('touchmove', touchMoveHandler, false);
+			obj2.addEventListener('touchend', touchEndHandler, false);
+			obj2.addEventListener('touchstart', touchStartHandler, false);
+			obj5.addEventListener('touchmove', touchMoveHandler, false);
+			obj5.addEventListener('touchend', touchEndHandler, false);
+			obj5.addEventListener('touchstart', touchStartHandler, false);
+			obj12.addEventListener('touchmove', touchMoveHandler, false);
+			obj12.addEventListener('touchend', touchEndHandler, false);
+			obj12.addEventListener('touchstart', touchStartHandler, false);
+		}
+
+		function checkResult()
+		{
+			var pocket1 = {left:POCKET_WIDTH, right:(POCKET_WIDTH+POCKET_WIDTH),top:80,bottom:(80+POCKET_HEIGHT)};
+			var pocket2 = {left:POCKET_WIDTH, right:(POCKET_WIDTH+POCKET_WIDTH),top:330,bottom:(330+POCKET_HEIGHT)};
+			if(((coins[0].y>pocket1.top)&&(coins[0].y<pocket1.bottom)&&(coins[0].x>pocket1.left)&&(coins[0].x<pocket1.right))
+			 && (((coins[1].y>pocket1.top)&&(coins[1].y<pocket1.bottom)&&(coins[1].x>pocket1.left)&&(coins[1].x<pocket1.right))||(coins[1].x==0)&&(coins[1].y==0))
+			 && (((coins[2].y>pocket2.top)&&(coins[2].y<pocket2.bottom)&&(coins[2].x>pocket2.left)&&(coins[2].x<pocket2.right))||(coins[2].x==0)&&(coins[2].y==0))
+			 && ((coins[3].y>pocket1.top)&&(coins[3].y<pocket1.bottom)&&(coins[3].x>pocket1.left)&&(coins[3].x<pocket1.right)))
+			{
+				if(!bravoShown)
+				{
+					alert('BRAVO PETRA!!!');
+					bravoShown = true;
+				}
+			}
+		}
+		
+		/*function getSnapPosition(cordx,cordy)
+		{
+			if((cordx<slot1.xpos+30)&&(cordx>slot1.xpos-30) && (cordy<slot1.ypos+30)&&(cordy>slot1.ypos-30))
+			{
+				return {x:slot1.xpos,y:slot1.ypos,id:0};
+			}
+			if((cordx<slot2.xpos+30)&&(cordx>slot2.xpos-30) && (cordy<slot2.ypos+30)&&(cordy>slot2.ypos-30))
+			{
+				return {x:slot2.xpos,y:slot2.ypos,id:1};
+			}
+			if((cordx<slot3.xpos+30)&&(cordx>slot3.xpos-30) && (cordy<slot3.ypos+30)&&(cordy>slot3.ypos-30))
+			{
+				return {x:slot3.xpos,y:slot3.ypos,id:2};
+			}
+			if((cordx<slot4.xpos+30)&&(cordx>slot4.xpos-30) && (cordy<slot4.ypos+30)&&(cordy>slot4.ypos-30))
+			{
+				return {x:slot4.xpos,y:slot4.ypos,id:3};
+			}
+			
+			return {x:-10,y:0};
+		}*/
+		
+		function getCoinIdFromId(text_id)
+		{
+			if(text_id == 'novac-zad1-t1') return 0;
+			if(text_id == 'novac-zad1-t2') return 1;
+			if(text_id == 'novac-zad1-t5') return 2;
+			if(text_id == 'novac-zad1-t2-1') return 3;
+		}
+		function goingUp()
+		{
+			//check all coins position :/
+			if(eliment != 0)
+			{
+				//result[pos.id] = eliment.id;
+				//eliment.cordx
+				coin_id = getCoinIdFromId(eliment.id);
+				coins[coin_id].x = eliment.cordx;
+				coins[coin_id].y = eliment.cordy;
+				
+				eliment = 0;
+				checkResult();
+			}
+		}
+		function goingDown(el)
+		{
+			console.log('hehe');
+			eliment = el;
+		}
+		
+		function goingMove(ev)
+		{
+			var eventt = ev;
+			
+			if(eliment != 0)
+			{
+				//element is being moved
+				var cordx = 0;
+				var cordy = 0;
+				
+				coinsaremoved = true;
+				
+				if (!eventt) {
+					eventt = window.event;
+				}
+				if (eventt.pageX || eventt.pageY){
+					cordx = eventt.pageX - (ELEMENT_WIDTH/2+5) - divContainer.offsetLeft;
+					cordy = eventt.pageY - (ELEMENT_WIDTH/2+10) - divContainer.offsetTop;
+				}
+				else if (eventt.clientX || eventt.clientY){
+					cordx = eventt.clientX - (ELEMENT_WIDTH/2+5) - divContainer.offsetLeft;
+					cordy = eventt.clientY - (ELEMENT_WIDTH/2+10) - divContainer.offsetTop;
+				}
+
+				/*var pos = getSnapPosition(cordx,cordy);
+				if(pos.x!=-10)
+				{
+					cordx = pos.x;
+					cordy = pos.y;
+					
+					console.log('snapping element: ' + eliment.id + ' to position: ' + pos.id);
+					//result[pos.id] = eliment.id;
+				}*/
+				
+				console.log('asdasasd');
+				eliment.cordx = cordx;
+				eliment.cordy = cordy;
+				eliment.style.left= '' + cordx + 'px';
+				eliment.style.top= '' + cordy + 'px';
+			}
+		}
+		</script>
+	</head>
+	<body onload='init();' onmouseup='goingUp();' onmousemove='goingMove(event);'>
+	
+	<div id="id-container-div" class="c_container_div" style="">
+
+		<p style='margin:15px;'>Премести новчиће из Марковог у Павлов џеп тако да имају исто пара.</p>
+		
+		<div id='novac-zad1-f1' class='pocket first_row' style='cursor:default; left:200px; background: url("/matematika/media/images/pocket.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-f2' class='pocket second_row' style='cursor:default; left:200px; background: url("/matematika/media/images/pocket.png"); background-size: 100%;'></div>
+
+		<div id='novac-zad1-t2' class='token third_row' onmousedown='goingDown(this);' style='left:195px; background: url("/matematika/media/images/novac_2.png"); background-size: 100%;'></div>
+
+		<div id='novac-zad1-t2-1' class='token fourth_row' onmousedown='goingDown(this);' style='left:200px; background: url("/matematika/media/images/novac_2.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-t1' class='token fourth_row' onmousedown='goingDown(this);' style='left:285px; background: url("/matematika/media/images/novac_1.png"); background-size: 100%;'></div>
+		<div id='novac-zad1-t5' class='token fifth_row' onmousedown='goingDown(this);' style='left:245px; background: url("/matematika/media/images/novac_5.png"); background-size: 100%;'></div>
+		
+	</div>
+		
+	<div id="id-container-div" class="c_container_div" style="width:100px">
+	<center><a href="novac.html">назад</a><center>
+	</div>
+	
+	</body>
+</html>
