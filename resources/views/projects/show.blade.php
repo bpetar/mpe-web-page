@@ -103,8 +103,13 @@ $( document ).ready(function() {
                     <div class="panel-body" style="">
 
 						{{--<p> <a href="/projects"><-Back</a></p>--}}
-						<p> Description: {{$project->description}} </p>
+                        <p> Client: {{ $project->client }} </p>
+                        <p> Year: {{$project->year}} </p>
+						<p>Description: {!! $project->fulldescription !!}</p>
+                        <p>Link: <a href="https://{!! $project->link !!}">{!! $project->link !!}</a></p>
 						<p> Tags: {{$project->tags}} </p>
+
+
 						<p><img src="/{{$project->image}}" width="600px" alt="ASD"></p>
 
                         {{--    
@@ -122,6 +127,16 @@ $( document ).ready(function() {
 				</div>
 			</div>
 		</div>
+
+        <div class="row projectsRow" style="color:white;">
+            <div class="col-md-12" style="">
+                <div class="panel panel-default" style="background:#3f9f9f;">
+                    <div class="panel-body" style="">
+                        <a style="color:white;" href="/projects">Tags:</a> {{$project->tags}}
+                    </div>
+                </div>
+            </div>
+        </div>
 
 	</div>
 

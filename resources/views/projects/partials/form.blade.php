@@ -19,13 +19,65 @@
 	</div>
 </div>
 
-{{--Item Description--}}
+{{--Item Year--}}
+<div class="form-group{{ $errors->has('year') ? ' has-error' : '' }}">
+
+	<label for="year" class="col-md-4 control-label">Year</label>
+
+	<div class="col-md-6">
+		{{ Form::selectYear('year', 2000, 2100) }}
+	    <!--{!! Form::text('year', null, array('class' => 'form-control', 'placeholder'=> 'Enter year here..')) !!}-->
+
+	    @if ($errors->has('year'))
+	        <span class="help-block">
+	            <strong>{{ $errors->first('year') }}</strong>
+	        </span>
+	    @endif
+	</div>
+</div>
+
+{{--Item Client--}}
+<div class="form-group{{ $errors->has('client') ? ' has-error' : '' }}">
+
+	<label for="client" class="col-md-4 control-label">Client</label>
+
+	<div class="col-md-6">
+	    {!! Form::text('client', null, array('class' => 'form-control', 'placeholder'=> 'Enter clients name here..')) !!}
+
+	    @if ($errors->has('year'))
+	        <span class="help-block">
+	            <strong>{{ $errors->first('client') }}</strong>
+	        </span>
+	    @endif
+	</div>
+</div>
+
+
+
+
+{{--Item Link--}}
+<div class="form-group{{ $errors->has('link') ? ' has-error' : '' }}">
+
+	<label for="link" class="col-md-4 control-label">Link</label>
+
+	<div class="col-md-6">
+	    {!! Form::text('link', null, array('class' => 'form-control', 'placeholder'=> 'Enter link to project here..')) !!}
+
+	    @if ($errors->has('link'))
+	        <span class="help-block">
+	            <strong>{{ $errors->first('link') }}</strong>
+	        </span>
+	    @endif
+	</div>
+</div>
+
+{{--Item Short Description--}}
 <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
 
 	<label for="description" class="col-md-4 control-label">Description</label>
 
 	<div class="col-md-6">
-	    {!! Form::text('description', null, array('class' => 'form-control', 'placeholder'=> 'Enter description here..')) !!}
+	    {!! Form::text('description', null, array('class' => 'form-control', 'placeholder'=> 'Enter short description here..')) !!}
 
 	    @if ($errors->has('description'))
 	        <span class="help-block">
@@ -36,7 +88,7 @@
 </div>
 
 
-{{--Item Price--}}
+{{--Item Tags--}}
 <div class="form-group{{ $errors->has('tags') ? ' has-error' : '' }}">
 
 	<label for="tags" class="col-md-4 control-label">Tags</label>
@@ -67,6 +119,21 @@
 	    @if ($errors->has('image'))
 	        <span class="help-block">
 	            <strong>{{ $errors->first('image') }}</strong>
+	        </span>
+	    @endif
+	</div>
+</div>
+{{--Item Full Description--}}
+<div class="form-group{{ $errors->has('fulldescription') ? ' has-error' : '' }}">
+
+	<label for="fulldescription" class="col-md-12 ">Full Description</label>
+
+	<div class="col-md-12">
+	    {!! Form::textarea('fulldescription', null, array('class' => 'form-control', 'placeholder'=> 'Enter full description here..', 'id' => 'technig')) !!}
+
+	    @if ($errors->has('fulldescription'))
+	        <span class="help-block">
+	            <strong>{{ $errors->first('fulldescription') }}</strong>
 	        </span>
 	    @endif
 	</div>

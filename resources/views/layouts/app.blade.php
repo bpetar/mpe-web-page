@@ -26,6 +26,8 @@
             margin-right: 6px;
         }
     </style>
+    
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css" rel="stylesheet">
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
@@ -40,6 +42,24 @@
 
     @yield('content')
 
+     <!-- Scripts -->
 
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+
+            $('#technig').summernote({
+                height:300,
+                callbacks: {
+                    onImageUpload: function(files, editor, $editable) {
+                        sendFile(files[0],editor,$editable);
+                    }
+                }
+            });
+
+            
+        });
+    </script>
 </body>
 </html>

@@ -76,7 +76,7 @@ class ProjectsController extends Controller
 
     	$project = Project::create($request->all());
 
-        //dd($project);
+       // dd($project);
     
         if ($request->hasFile('image')) {
 
@@ -91,6 +91,7 @@ class ProjectsController extends Controller
                 //dd($filename);
                 //set project image
                 $project->image = $destinationPath . '/' . $filename;
+                //dd($project->image);
                 //save
                 $project->save();
 
@@ -138,6 +139,7 @@ class ProjectsController extends Controller
         $project = Project::findOrFail($id);
 
         $project->update($request->all());
+        //dd($project);
         
         return redirect('projects');
     }

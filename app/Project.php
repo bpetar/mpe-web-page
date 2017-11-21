@@ -9,8 +9,12 @@ class Project extends Model
     //
     protected $fillable = [
     	'name',
-    	'description',
+    	'description',    	
     	'tags',
-    	'image'
+    	'image',
+    	'client',
+    	'year',
+    	'link',
+        'fulldescription'
     ];
 }

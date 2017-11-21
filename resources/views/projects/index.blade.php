@@ -118,7 +118,7 @@ $( document ).ready(function() {
                         </div>
 
                         <div class="projectText">
-                        <span style="color:white; width:220px;">{{$project->description}}</span>
+                        <span style="color:white; width:220px;">{!! $project->description !!}</span>
                         </div>
 
                         <div class="projectText">

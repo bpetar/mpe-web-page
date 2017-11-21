@@ -19,6 +19,10 @@ class CreateProjectsTable extends Migration
             $table->string('description');
             $table->string('image');
             $table->string('tags');
+            $table->string('client');
+            $table->string('year');
+            $table->string('link');
+            $table->string('fulldescription');
             $table->boolean('featured');
             $table->timestamps();
         });
