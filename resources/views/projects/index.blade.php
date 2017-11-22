@@ -34,7 +34,7 @@ $( document ).ready(function() {
 
 
 
-	<nav class="navbar navbar-default navbar-static-top" style="background:#3f9f3f; color:white; border:0px;">
+    <nav class="navbar navbar-default navbar-static-top" style="background:#3f9f3f; color:white; border:0px;">
         <div class="container">
             <div class="navbar-header">
 
@@ -103,10 +103,10 @@ $( document ).ready(function() {
         </div>
 
         @foreach ($projects->chunk(3) as $project3)
-	    <div class="row projectsRow" style="color:white;">
+        <div class="row projectsRow" style="color:white;">
             @foreach ($project3 as $project)
             <a style="" href="/projects/{{$project->id}}">
-	        <div class="col-md-4" style="">
+            <div class="col-md-4" style="">
 
                 <div class="panel panel-default" style="background:#3f9f9f;">
                     <div class="panel-body" style="">
@@ -124,28 +124,28 @@ $( document ).ready(function() {
                         <div class="projectText">
                         <span style="color:white; width:220px;">Tags: <a style="" href="/tags/{{$project->tags}}">{{$project->tags}}</a></span>
                         </div>
-	            
+                
                         @if (auth()->check())
-						{{ Form::open(array('url' => URL::to('/projects/' . $project->id . '/edit'), 'method' => 'GET', 'style'=>'display:inline-block')) }}
-					    <button type="submit" >Edit</button>
-						{{ Form::close() }}
+                        {{ Form::open(array('url' => URL::to('/projects/' . $project->id . '/edit'), 'method' => 'GET', 'style'=>'display:inline-block')) }}
+                        <button type="submit" >Edit</button>
+                        {{ Form::close() }}
 
-						{{ Form::open(array('url' => URL::to('/projects/' . $project->id), 'method' => 'DELETE', 'style'=>'display:inline-block')) }}
-					    <button type="submit" >Delete</button>
-						{{ Form::close() }}
+                        {{ Form::open(array('url' => URL::to('/projects/' . $project->id), 'method' => 'DELETE', 'style'=>'display:inline-block')) }}
+                        <button type="submit" >Delete</button>
+                        {{ Form::close() }}
                         @endif
-						
+                        
 
-						<br>
-					</div>
-				</div>
-			</div>
+                        <br>
+                    </div>
+                </div>
+            </div>
             </a>
             @endforeach
 
-		</div>
+        </div>
         @endforeach
-	</div>
+    </div>
 
 </div>
 

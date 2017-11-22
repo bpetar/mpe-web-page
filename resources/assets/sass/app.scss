@@ -295,14 +295,57 @@ cursor: pointer;
   
 }
 
-@media screen and (max-height:652px) {
-
-.midsize-icons {
-   top:-75px;
-  }
+/* transparent button */
 
 
+
+
+@mixin transparentButton { 
+   border-radius: 10px; 
+   background-color: transparent; 
+   border: 1px solid white;
+   padding: 10px 30px; 
+   color: #ffffff;
+   transition: all 0.5s;
 }
+
+.transparent { 
+  @include transparentButton; 
+  float: right;
+} 
+
+.transparent:hover {
+  background-color: rgba(255,255,255,0.5);
+  color: #3f9f9f;
+  border: 1px solid #3f9f9f;
+  
+}
+
+/* tagovi */
+
+
+.tag {
+  @include transparentButton;
+  float: left;
+}
+
+.tag:hover {
+  background-color: rgba(255,255,255,0.5);
+  color: #3f9f9f;
+  border: 1px solid #3f9f9f;
+  
+}
+
+/* visited links */
+
+a:visited {
+  color: white;
+  border: 1px solid white;
+  text-decoration: none;
+}
+
+
+
 @media screen and (max-width:991px) and (min-width: 768px){
 
 .row2{

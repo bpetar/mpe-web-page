@@ -14,9 +14,8 @@ tasks
 - full hd screen friendly
 
 
-
-- Add to DB projects: Client, Year, Link, More pictures?
-- Fix Project layout, Image on the left, Name, Desct, Client, Year, Link to the right
++ Add to DB projects: Client, Year, Link, More pictures?
++ Fix Project layout, Image on the left, Name, Desct, Client, Year, Link to the right
 - Fix tags on all project page
 - skip image width animation
 - remove underline on all projects page

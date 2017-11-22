@@ -34,7 +34,7 @@ $( document ).ready(function() {
 
 
 
-	<nav class="navbar navbar-default navbar-static-top" style="background:#3f9f3f; color:white; border:0px;">
+    <nav class="navbar navbar-default navbar-static-top" style="background:#3f9f3f; color:white; border:0px;">
         <div class="container">
             <div class="navbar-header">
 
@@ -82,128 +82,81 @@ $( document ).ready(function() {
         </div>
     </nav>
 
-    <div class="container" style="background:#3f9f9f; color:white; border:0px;">
+    <div class="container" style="color:white; border:0px;">
 
         <!--<p><a href="/projects/create"> [Add New Project] </a></p>
                         <br>-->
 
         <div class="row projectsRow" style="color:white;">
-            <div class="col-md-12" style="">
+            <div class="col-md-12">
                 <div class="panel panel-default" style="background:#3f9f9f;">
-                    <div class="panel-body" style="">
+                    <div class="panel-body">
                         <a style="color:white;" href="/projects">All Projects</a> -> {{$project->name}}
                     </div>
                 </div>
             </div>
         </div>
 
-	    <div class="row projectsRow" style="color:white;">
-	        <div class="col-md-12" style="">
-                <div class="panel panel-default" style="background:#3f9f9f;">
-                    <div class="panel-body" style="">
-
-						{{--<p> <a href="/projects"><-Back</a></p>--}}
-                        <p> Client: {{ $project->client }} </p>
-                        <p> Year: {{$project->year}} </p>
-						<p>Description: {!! $project->fulldescription !!}</p>
-                        <p>Link: <a href="https://{!! $project->link !!}">{!! $project->link !!}</a></p>
-						<p> Tags: {{$project->tags}} </p>
-
-
-						<p><img src="/{{$project->image}}" width="600px" alt="ASD"></p>
-
-                        {{--    
-						{{ Form::open(array('url' => URL::to('/projects/' . $project->id . '/edit'), 'method' => 'GET', 'style'=>'display:inline-block')) }}
-					    <button type="submit" >Edit</button>
-						{{ Form::close() }}
-
-						{{ Form::open(array('url' => URL::to('/projects/' . $project->id), 'method' => 'DELETE', 'style'=>'display:inline-block')) }}
-					    <button type="submit" >Delete</button>
-						{{ Form::close() }}
-						--}}
-
-						<br>
-					</div>
-				</div>
-			</div>
-		</div>
-
         <div class="row projectsRow" style="color:white;">
+
             <div class="col-md-12" style="">
                 <div class="panel panel-default" style="background:#3f9f9f;">
-                    <div class="panel-body" style="">
-                        <a style="color:white;" href="/projects">Tags:</a> {{$project->tags}}
+                    <div class="panel-body" >                        
+                        <div class="col-md-4">
+
+                           <p><img src="/{{$project->image}}" style="width:100%" alt="ASD"></p> 
+                            
+                        </div>
+                        <div class="col-md-8" style="margin: 0;">
+                        
+                            <!--<p> <a href="/projects"><-Back</a></p>--}}-->
+                            <h1>{{$project->name}}</h1>
+                            <hr>
+                            <p> Client: {{ $project->client }} </p>
+                            <p> Year: {{$project->year}} </p>
+                            <p>Description: {!! $project->fulldescription !!}</p>
+                           
+                           
+
+                            
+                            
+                            
+                            {{--    
+                            {{ Form::open(array('url' => URL::to('/projects/' . $project->id . '/edit'), 'method' => 'GET', 'style'=>'display:inline-block')) }}
+                            <button type="submit" >Edit</button>
+                            {{ Form::close() }}
+
+                            {{ Form::open(array('url' => URL::to('/projects/' . $project->id), 'method' => 'DELETE', 'style'=>'display:inline-block')) }}
+                            <button type="submit" >Delete</button>
+                            {{ Form::close() }}
+                            --}}
+
+                            <br>
+                        </div>
+                        <div class="col-md-12">
+                            <p> <a href="https://{!! $project->link !!}" class="transparent" >view project</a></p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-	</div>
-
-</div>
-
-
-
-<div class="divi" style="background:#555; position:relative; height:300px;">
-
-    <div class="container">
-
-        <div class="row">
-            <div class="col-md-4">
-                <h1>About</h1>
-            </div>
-
-            <div class="col-md-4">
-            </div>
-
-            <div class="col-md-4">
-                <h1>Contact</h1>
+        <div class="row projectsRow" style="color:white;">
+            <div class="col-md-12" style="">
+                <div class="panel panel-default" style="background:#3f9f9f;">
+                    <div class="panel-body" style="">
+                         <a href="#" class="tag">{{$project->tags}}</a>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="row" style="margin-top:20px;">
-            <div class="col-md-4" style="background:#555; color:white;">
-                <div style="background:#555; color:white; margin-bottom:15px;" >
-                    We are small game and web development company from Serbia, available on the market since 2007.
-                </div>
-
-                <div style="background:#555; color:white; margin-bottom:15px;" >
-                    Facebook, Tweeter, Google+, Youtube, Blogger, GitHub
-                </div>
-                
-                <div style="background:#555; color:white;" >
-                    <span> Copyright © 2016 Mystic Peanut</span>
-                </div>
-            </div>
-
-            <div class="col-md-4">
-            </div>
-
-            <div class="col-md-4">
-                <div style="background:#555; color:white;" >
-                    info@mystic-peanut.com
-                </div>
-
-                <div style="background:#555; color:white;" >
-                    +381638767650
-                </div>
-
-                <div style="background:#555; color:white;" >
-                    Veljka Petrovica 8
-                </div>
-
-                <div style="background:#555; color:white;" >
-                    Novi Sad, Serbia
-                </div>
-
-                <div id="hmm" name"hmm" style="background:url('assets/img/mystic-logo.png'); background-size:contain; height:50px; width:145px; ; margin-top:15px;">
-                </div>
-            </div>
-
-        </div>
-    </div>
+    
 
 </div>
 
+</div>
+
+@include('projects.partials.footer')
 
 @stop
