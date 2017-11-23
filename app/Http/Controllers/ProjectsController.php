@@ -19,13 +19,20 @@ class ProjectsController extends Controller
     {
         $projects = Project::all();
 
+        foreach ($projects as $project) 
+        {
+            $project->tagsArr= explode(' ',$project->tags);
+        }
+        
         return view('projects.index', compact('projects'));
     }
 
     public function show($id)
     {
         $project = Project::findOrFail($id);
-        return view('projects.show', compact('project'));
+        $projectTags=explode(' ',$project->tags);
+        
+        return view('projects.show', compact('project', 'projectTags'));
     }
 
      public function showTags($tag)
@@ -67,14 +74,14 @@ class ProjectsController extends Controller
             return;
         }
 
-    	return view('projects.create');
+        return view('projects.create');
     }
 
 
     public function store(ProjectRequest $request)
     {
 
-    	$project = Project::create($request->all());
+        $project = Project::create($request->all());
 
        // dd($project);
     
@@ -122,7 +129,7 @@ class ProjectsController extends Controller
         }*/
 
 
-    	return redirect('projects');
+        return redirect('projects');
     }
 
     public function destroy($id)
@@ -152,7 +159,7 @@ class ProjectsController extends Controller
             return;
         }
 
-    	$project = Project::findOrFail($id);
-    	return view('projects.edit', compact('project'));
+        $project = Project::findOrFail($id);
+        return view('projects.edit', compact('project'));
     }
 }

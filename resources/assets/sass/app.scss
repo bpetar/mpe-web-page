@@ -301,7 +301,7 @@ cursor: pointer;
 
 
 @mixin transparentButton { 
-   border-radius: 10px; 
+   border-radius: 5px; 
    background-color: transparent; 
    border: 1px solid white;
    padding: 10px 30px; 
@@ -327,6 +327,8 @@ cursor: pointer;
 .tag {
   @include transparentButton;
   float: left;
+  margin: 5px;
+  
 }
 
 .tag:hover {

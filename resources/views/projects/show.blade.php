@@ -84,9 +84,6 @@ $( document ).ready(function() {
 
     <div class="container" style="color:white; border:0px;">
 
-        <!--<p><a href="/projects/create"> [Add New Project] </a></p>
-                        <br>-->
-
         <div class="row projectsRow" style="color:white;">
             <div class="col-md-12">
                 <div class="panel panel-default" style="background:#3f9f9f;">
@@ -109,17 +106,13 @@ $( document ).ready(function() {
                         </div>
                         <div class="col-md-8" style="margin: 0;">
                         
-                            <!--<p> <a href="/projects"><-Back</a></p>--}}-->
+                            <!--<p> <a href="/projects"><-Back</a></p>-->
                             <h1>{{$project->name}}</h1>
                             <hr>
                             <p> Client: {{ $project->client }} </p>
                             <p> Year: {{$project->year}} </p>
-                            <p>Description: {!! $project->fulldescription !!}</p>
-                           
-                           
+                            <p>Description: {!! $project->fulldescription !!}</p>                                             
 
-                            
-                            
                             
                             {{--    
                             {{ Form::open(array('url' => URL::to('/projects/' . $project->id . '/edit'), 'method' => 'GET', 'style'=>'display:inline-block')) }}
@@ -140,22 +133,23 @@ $( document ).ready(function() {
                 </div>
             </div>
         </div>
+    </div>
 
         <div class="row projectsRow" style="color:white;">
             <div class="col-md-12" style="">
                 <div class="panel panel-default" style="background:#3f9f9f;">
                     <div class="panel-body" style="">
-                         <a href="#" class="tag">{{$project->tags}}</a>
+                        @foreach ($projectTags as $projectTag)
+                            <a href="/tags/{{$projectTag}}" class="tag">{{$projectTag}}</a>
+                        @endforeach
                     </div>
                 </div>
             </div>
-        </div>
+        </div>    
 
-    
+    </div>
 
-</div>
 
-</div>
 
 @include('projects.partials.footer')
 

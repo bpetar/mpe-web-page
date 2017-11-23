@@ -223,25 +223,31 @@ $( document ).ready(function() {
         </div>
       </div>
       @foreach ($projects->chunk(3) as $project3)
-      <div class="container1">
-      @foreach ($project3 as $project)
-        <a style="color:white;" href="/projects/{{$project->id}}">
-          <div class="col-md-4" style="">
-            <div class="projectPic" style="background: no-repeat url('{{$project->image}}'); background-size: cover; background-position: center;">
+        <div class="container1">
+          @foreach ($project3 as $project)
+            <a style="color:white;" href="/projects/{{$project->id}}">
+              <div class="col-md-4" style="">
+                <div class="projectPic" style="background: no-repeat url('{{$project->image}}'); background-size: cover; background-position: center;">
+                </div>
+                <div class="projectTitle">
+                  <span style="color:white; font-size:22px;" >{{$project->name}}</span>
+                </div>
+                <div class="projectText" style="text-align: center;">
+                  <span style="color:white;">{{$project->description}}</span>
+                  <br>
+                  <span style="color:white;"> 
+                    @foreach ($project->tagsArr as $tag)
+                      <a href="/tags/{{$tag}}" class="">{{$tag}}</a>
+                    @endforeach
+                  </span>
+                </div>
               </div>
-            <div class="projectTitle">
-              <span style="color:white; font-size:22px;" >{{$project->name}}</span>
-            </div>
-            <div class="projectText" style="text-align: center;">
-              <span style="color:white;">{{$project->description}}</span><br>
-              <span style="color:white;">{{$project->tags}}</span>
-            </div>
-          </div>
-        </a>
-        @endforeach
-      </div>
+            </a>
+          @endforeach
+        </div>
       @endforeach
-      <div class="col-md-12 " style=" text-align: center;  margin: 0 auto; font-size:18px; cursor:pointer;padding-top: 40px;"><a style="color:white;border:solid 1px white;padding:5px 5px 5px 5px;" href="{{ url('/projects') }}">These are our latest projects, click here to check them all</a></div>
+      <div class="col-md-12 " style=" text-align: center;  margin: 0 auto; font-size:18px; cursor:pointer;padding-top: 40px;"><a style="color:white;border:solid 1px white;padding:5px 5px 5px 5px;" href="{{ url('/projects') }}">These are our latest projects, click here to check them all</a>
+      </div>
     </div>
 </div>
 <div class="divi" style="background:#555; position:relative; height:80vh;">

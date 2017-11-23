@@ -122,7 +122,11 @@ $( document ).ready(function() {
                         </div>
 
                         <div class="projectText">
-                        <span style="color:white; width:220px;">Tags: <a style="" href="/tags/{{$project->tags}}">{{$project->tags}}</a></span>
+                        <span style="color:white; width:220px;">Tags:
+                            @foreach ($project->tagsArr as $tag)
+                                <a style="" href="/tags/{{$tag}}">{{$tag}}</a>
+                            @endforeach
+                        </span>
                         </div>
                 
                         @if (auth()->check())

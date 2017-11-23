@@ -14,10 +14,16 @@ use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 class HomeController extends Controller
 {
   public function index()
-	{
-    $projects  = Project::latest('updated_at')->take(3)->get();;
-		return view('/welcome', compact('projects','projectsWithTag'));
-	}
+    {
+        $projects  = Project::latest('updated_at')->take(3)->get();
+
+        foreach ($projects as $project) 
+            {
+                $project->tagsArr= explode(' ',$project->tags);
+            }
+          
+        return view('/welcome', compact('projects'));
+    }
 
 
 
