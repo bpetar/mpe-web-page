@@ -42,33 +42,34 @@
 
 }
 
+
 .projectPic {
   background: no-repeat url("/assets/img/lionel.jpg");
   background-size: cover;
   background-position: center;
-  width: 200px;
+  width: 360px;
   height: 300px;
   margin: auto;
   border: solid 1px white;
   transition: width 0.2s; }
-
+/*
 .col-md-4:hover .projectPic {
   width: 360px;
 }
-
+*/
 .projectPic2 {
   background: no-repeat url("/assets/img/lionel.jpg");
   background-size: cover;
   background-position: center;
-  width: 200px;
+  width: 326px;
   height: 300px;
   margin: auto;
   border: solid 1px white;
   transition: width 0.2s; }
-
+/*
 .col-md-4:hover .projectPic2 {
   width: 326px; }
-
+*/
 .projectTitle {
   width: 100%; 
   margin: 20px auto 0 0;
@@ -434,7 +435,8 @@ a:visited {
   margin: auto;
   border: solid 1px white;
   transition: width 0.2s; }
-  .moze{
+  
+.moze{
   width:100%;
   }
 
