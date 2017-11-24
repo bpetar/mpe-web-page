@@ -20,4 +20,5 @@ tasks
 + skip image width animation
 + remove underline on all projects page
 - edit project picture
-- edit/delete buttons color white not visible
++ edit/delete buttons color white not visible
+- remove link from container div on all projects

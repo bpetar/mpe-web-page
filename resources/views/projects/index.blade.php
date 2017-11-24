@@ -105,18 +105,18 @@ $( document ).ready(function() {
         @foreach ($projects->chunk(3) as $project3)
         <div class="row projectsRow" style="color:white;">
             @foreach ($project3 as $project)
-            <a style="" href="/projects/{{$project->id}}">
+            
             <div class="col-md-4" style="">
 
                 <div class="panel panel-default" style="background:#3f9f9f;">
                     <div class="panel-body" style="">
-
-                        <div class="projectPic2" style="background: no-repeat url('/{{$project->image}}'); background-size: cover; background-position: center;"> </div>
-                            
-                        <div class="projectTitle">
-                        <span style="color:white; font-size:22px;" >{{$project->name}}</span>
-                        </div>
-
+                        <a style="" href="/projects/{{$project->id}}">
+                            <div class="projectPic2" style="background: no-repeat url('/{{$project->image}}'); background-size: cover; background-position: center;"> </div>
+                                
+                            <div class="projectTitle">
+                                <span style="color:white; font-size:22px;" >{{$project->name}}</span>
+                            </div>
+                        </a>
                         <div class="projectText">
                         <span style="color:white; width:220px;">{!! $project->description !!}</span>
                         </div>
@@ -144,7 +144,7 @@ $( document ).ready(function() {
                     </div>
                 </div>
             </div>
-            </a>
+            
             @endforeach
 
         </div>
