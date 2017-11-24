@@ -131,11 +131,11 @@ $( document ).ready(function() {
                 
                         @if (auth()->check())
                         {{ Form::open(array('url' => URL::to('/projects/' . $project->id . '/edit'), 'method' => 'GET', 'style'=>'display:inline-block')) }}
-                        <button type="submit" >Edit</button>
+                        <button type="submit" class="transparent">Edit</button>
                         {{ Form::close() }}
 
                         {{ Form::open(array('url' => URL::to('/projects/' . $project->id), 'method' => 'DELETE', 'style'=>'display:inline-block')) }}
-                        <button type="submit" >Delete</button>
+                        <button type="submit" class="transparent">Delete</button>
                         {{ Form::close() }}
                         @endif
                         
