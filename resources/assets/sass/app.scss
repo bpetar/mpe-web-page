@@ -6,6 +6,16 @@
 // @import url(https://fonts.googleapis.com/css?family=Lato:300,400,700);
 
 
+
+
+ a, a:hover, a:active, a:focus, a:visited {
+  outline: none;
+  text-decoration: none;
+  color: white;
+  
+}
+
+
 .divi {
   height: 100vh;
   top: 0;
@@ -77,21 +87,22 @@
   /*border:solid 1px red;*/
 }
 
+/*
 .col-md-4:hover .projectTitle {
   text-decoration: underline; 
   
 }
-
+*/
 .projectText {
   width: 300px; 
   margin: auto;
   /*border:solid 1px red;*/
 }
-
+/*
 .col-md-4:hover .projectText {
   text-decoration: underline; 
 }
-
+*/
 .google-maps {
     position: relative;
     padding-bottom: 15%; // This is the aspect ratio
@@ -339,13 +350,7 @@ cursor: pointer;
   
 }
 
-/* visited links */
 
-a:visited {
-  color: white;
-  border: 1px solid white;
-  text-decoration: none;
-}
 
 
 

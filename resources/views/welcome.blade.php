@@ -225,24 +225,29 @@ $( document ).ready(function() {
       @foreach ($projects->chunk(3) as $project3)
         <div class="container1">
           @foreach ($project3 as $project)
-            <a style="color:white;" href="/projects/{{$project->id}}">
-              <div class="col-md-4" style="">
+            <div class="col-md-4" style="">
+              <a style="color:white;" href="/projects/{{$project->id}}">
+              
                 <div class="projectPic" style="background: no-repeat url('{{$project->image}}'); background-size: cover; background-position: center;">
                 </div>
+
                 <div class="projectTitle">
                   <span style="color:white; font-size:22px;" >{{$project->name}}</span>
                 </div>
-                <div class="projectText" style="text-align: center;">
-                  <span style="color:white;">{{$project->description}}</span>
-                  <br>
-                  <span style="color:white;"> 
-                    @foreach ($project->tagsArr as $tag)
-                      <a href="/tags/{{$tag}}" class="">{{$tag}}</a>
-                    @endforeach
-                  </span>
-                </div>
+
+              </a>
+
+              <div class="projectText" style="text-align: center;">
+                <span style="color:white;">{{$project->description}}</span>
+                <br>
+                <span style="color:white;"> 
+                  @foreach ($project->tagsArr as $tag)
+                    <a href="/tags/{{$tag}}" class="">{{$tag}}</a>
+                  @endforeach
+                </span>
               </div>
-            </a>
+            </div>
+            
           @endforeach
         </div>
       @endforeach
