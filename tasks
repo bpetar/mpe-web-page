@@ -23,3 +23,5 @@ tasks
 + edit/delete buttons color white not visible
 + remove link from container div on all projects
 + fix edit/delete and link on container div on tags page
+
++ images responsive on all projects and all project pages

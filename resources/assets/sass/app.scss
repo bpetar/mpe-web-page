@@ -59,32 +59,35 @@ button {
 */
 
 .projectPic {
-  background: no-repeat url("/assets/img/lionel.jpg");
-  background-size: cover;
-  background-position: center;
-  width: 360px;
-  height: 300px;
+  
+  max-width: 360px;
+  height: auto;
   margin: auto;
   border: solid 1px white;
   transition: width 0.2s; }
+
 /*
 .col-md-4:hover .projectPic {
   width: 360px;
 }
 */
+
 .projectPic2 {
-  background: no-repeat url("/assets/img/lionel.jpg");
+ /* background: no-repeat url("/assets/img/lionel.jpg");
   background-size: cover;
-  background-position: center;
-  width: 326px;
-  height: 300px;
+  background-position: center; */
+  width: 100%;
+  max-width: 326px;
+  height: auto;
   margin: auto;
   border: solid 1px white;
   transition: width 0.2s; }
+
 /*
 .col-md-4:hover .projectPic2 {
   width: 326px; }
 */
+
 .projectTitle {
   width: 100%; 
   margin: 20px auto 0 0;
@@ -98,6 +101,7 @@ button {
   
 }
 */
+
 .projectText {
   width: 300px; 
   margin: auto;
@@ -107,6 +111,7 @@ button {
 .col-md-4:hover .projectText {
   text-decoration: underline; 
 }
+
 */
 .google-maps {
     position: relative;

@@ -112,7 +112,7 @@ $( document ).ready(function() {
                     <div class="panel-body" style="">
 
                         <a style="" href="/projects/{{$project->id}}">
-                            <div class="projectPic2" style="background: no-repeat url('/{{$project->image}}'); background-size: cover; background-position: center;"> </div>
+                            <div><img src="/{{$project->image}}" class="projectPic2 img-responsive"  alt="ASD"> </div>
                                 
                             <div class="projectTitle">
                                 <span style="color:white; font-size:22px;" >{{$project->name}}</span>

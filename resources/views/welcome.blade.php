@@ -228,7 +228,8 @@ $( document ).ready(function() {
             <div class="col-md-4" style="">
               <a style="color:white;" href="/projects/{{$project->id}}">
               
-                <div class="projectPic" style="background: no-repeat url('{{$project->image}}'); background-size: cover; background-position: center;">
+                <div>
+                  <img src="/{{$project->image}}" class="projectPic2 img-responsive"  alt="ASD">
                 </div>
 
                 <div class="projectTitle">

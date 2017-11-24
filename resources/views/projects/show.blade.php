@@ -101,7 +101,7 @@ $( document ).ready(function() {
                     <div class="panel-body" >                        
                         <div class="col-md-4">
 
-                           <p><img src="/{{$project->image}}" style="width:100%" alt="ASD"></p> 
+                           <p><img src="/{{$project->image}}" class="projectPic2 img-responsive"  alt="ASD"></p> 
                             
                         </div>
                         <div class="col-md-8" style="margin: 0;">
