@@ -21,4 +21,5 @@ tasks
 + remove underline on all projects page
 - edit project picture
 + edit/delete buttons color white not visible
-- remove link from container div on all projects
++ remove link from container div on all projects
++ fix edit/delete and link on container div on tags page

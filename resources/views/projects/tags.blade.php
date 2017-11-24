@@ -105,18 +105,19 @@ $( document ).ready(function() {
         @foreach ($projectsWithTag as $project)
 	    <div class="row projectsRow" style="color:white;">
             
-            <a style="" href="/projects/{{$project->id}}">
+            
 	        <div class="col-md-4" style="">
 
                 <div class="panel panel-default" style="background:#3f9f9f;">
                     <div class="panel-body" style="">
 
-                        <div class="projectPic2" style="background: no-repeat url('/{{$project->image}}'); background-size: cover; background-position: center;"> </div>
-                            
-                        <div class="projectTitle">
-                        <span style="color:white; font-size:22px;" >{{$project->name}}</span>
-                        </div>
-
+                        <a style="" href="/projects/{{$project->id}}">
+                            <div class="projectPic2" style="background: no-repeat url('/{{$project->image}}'); background-size: cover; background-position: center;"> </div>
+                                
+                            <div class="projectTitle">
+                                <span style="color:white; font-size:22px;" >{{$project->name}}</span>
+                            </div>
+                        </a>
                         <div class="projectText">
                         <span style="color:white; width:220px;">{{$project->description}}</span>
                         </div>
@@ -133,11 +134,11 @@ $( document ).ready(function() {
 	            
                         @if (auth()->check())
 						{{ Form::open(array('url' => URL::to('/projects/' . $project->id . '/edit'), 'method' => 'GET', 'style'=>'display:inline-block')) }}
-					    <button type="submit" >Edit</button>
+					    <button type="submit" class="transparent">Edit</button>
 						{{ Form::close() }}
 
 						{{ Form::open(array('url' => URL::to('/projects/' . $project->id), 'method' => 'DELETE', 'style'=>'display:inline-block')) }}
-					    <button type="submit" >Delete</button>
+					    <button type="submit" class="transparent">Delete</button>
 						{{ Form::close() }}
                         @endif
 						
@@ -146,7 +147,7 @@ $( document ).ready(function() {
 					</div>
 				</div>
 			</div>
-            </a>
+            
 
 		</div>
         @endforeach
