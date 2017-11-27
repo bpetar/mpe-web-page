@@ -127,7 +127,7 @@ $( document ).ready(function() {
                             <br>
                         </div>
                         <div class="col-md-12">
-                            <p> <a href="https://{!! $project->link !!}" class="transparent" >view project</a></p>
+                            <p> <a target="_blank" href="{{ url($project->link) }}" class="transparent" >view project</a></p>
                         </div>
                     </div>
                 </div>
