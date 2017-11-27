@@ -187,12 +187,12 @@ $( document ).ready(function() {
       </div>
       <div class="diamond" >
       </div>  
-    </div>
-  <div class="divi" style="position:relative; z-index:311; background:#fff; height:90vh; color:gray;">
+</div>
+<div class="divi" style="position:relative; z-index:311; background:#fff; height:90vh; color:gray;">
     <br><br>
-    <div class="container">
-      <div class="row">  
-        <div class="col-md-4 midsize-icons hidden-xs">
+  <div class="container">
+    <div class="row">  
+      <div class="col-md-4 midsize-icons hidden-xs">
           <div id="id-popicon-laravel" class="popicon" style="background-size: 100%;"></div>
           <div id="id-popicon-ember" class="popicon" style="background:no-repeat url('/assets/img/ember.png'); background-size: 100%; left:270px; top:330px;"></div>
           <div id="id-popicon-django" class="popicon" style="background:url('/assets/img/django.png'); background-size: 100%; left:120px; top:170px;"></div>
@@ -219,7 +219,7 @@ $( document ).ready(function() {
       <div class="w3-row">
         <div class="col-md-12" style="text-align:center; top:-50px">
           <h1>Mystic Peanut's Projects</h1>
-            <span>check out some of the things we've been involved with</span>
+          <span>check out some of the things we've been involved with</span>
         </div>
       </div>
       @foreach ($projects->chunk(3) as $project3)
@@ -256,82 +256,15 @@ $( document ).ready(function() {
       </div>
     </div>
 </div>
-<div class="divi" style="background:#555; position:relative; height:80vh;">
+<div class="divi" style="background:#555; position:relative; height:auto;">
   <div class="google-maps hidden-xs">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4059284.8835981362!2d17.407876687435483!3d45.36749995116911!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475b10613de93455%3A0xb6f7d683724fe28!2sNovi+Sad!5e0!3m2!1sen!2srs!4v1470597432165" width="1000" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
   </div>
-    <br><br>
-    <div class="container">
-      <div class="row2">
-        <div class="col-md-4">
-          <div class="about">
-            <h1>About</h1>
-            </div>
-            <div class="col-md-4  hidden-md hidden-lg" style="background:#555; color:white;">
-              <div style="background:#555; color:white; margin-bottom:15px;" >
-                  We are small game and web development company from Serbia, available on the market since 2007.
-              </div>
-              <div style="background:#555; color:white; margin-bottom:15px;">
-                  Facebook, Tweeter, Google+, Youtube, Blogger, GitHub
-              </div>
-              <div style="background:#555; color:white;" >
-                <span> Copyright © 2016 Mystic Peanut</span>
-              </div>  
-            </div>
-          </div>
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-            <div class="about">
-              <h1>Contact</h1>
-            </div>
-            <div class="col-md-4  hidden-md hidden-lg ">
-            <div style="background:#555; color:white;" >
-                info@mystic-peanut.com
-            </div>
-            <div style="background:#555; color:white;" >
-                +381638767650
-            </div>
-            <div style="background:#555; color:white;" >
-                Veljka Petrovica 8
-            </div>
-            <div style="background:#555; color:white;" >
-                Novi Sad, Serbia
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row hidden-sm hidden-xs" style="margin-top:20px;">
-      <div class="col-md-4 " style="background:#555; color:white;">
-          <div style="background:#555; color:white; margin-bottom:15px;" >
-                We are small game and web development company from Serbia, available on the market since 2007.
-              </div>
-              <div style="background:#555; color:white; margin-bottom:15px;" >
-                  Facebook, Tweeter, Google+, Youtube, Blogger, GitHub
-              </div>
-              <div style="background:#555; color:white;" >
-                  <span> Copyright © 2016 Mystic Peanut</span>
-              </div>
-              </div>
-              <div class="col-md-4">
-              </div>
-              <div class="col-md-4 ">
-              <div style="background:#555; color:white;" >
-                  info@mystic-peanut.com
-              </div>
-              <div style="background:#555; color:white;" >
-                  +381638767650
-              </div>
-              <div style="background:#555; color:white;" >
-                  Veljka Petrovica 8
-              </div>
-              <div style="background:#555; color:white;" >
-                  Novi Sad, Serbia
-              </div>
-              <div  id="hmm" name"hmm" style="background:url('assets/img/mystic-logo.png'); background-size:contain; height:50px; width:145px; ; margin-top:15px;">
-              </div>
-          </div>
-      </div>
-  </div>
+  
+  <br><br>
+ 
 </div>
+
+@include('projects.partials.footer')
+
 @endsection

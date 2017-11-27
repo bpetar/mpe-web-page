@@ -73,9 +73,6 @@ button {
 */
 
 .projectPic2 {
- /* background: no-repeat url("/assets/img/lionel.jpg");
-  background-size: cover;
-  background-position: center; */
   width: 100%;
   max-width: 326px;
   height: auto;
@@ -360,7 +357,9 @@ cursor: pointer;
   
 }
 
-
+.centered {
+  text-align: center;
+}
 
 
 
