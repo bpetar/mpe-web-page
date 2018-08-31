@@ -47,8 +47,8 @@ $( document ).ready(function() {
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}" style="color:white; border-bottom: solid 1px white;">
-                    Mystic - Peanut
+                <a class="navbar-brand" href="{{ url('/') }}" style="font-family: 'Slackey', cursive; color:white; border-bottom: solid 1px white;">
+                    Mystic Peanut
                 </a>
             </div>
 
@@ -82,7 +82,7 @@ $( document ).ready(function() {
         </div>
     </nav>
 
-    <div class="container" style="color:white; border:0px;">
+    <div class="container" style="min-height: 700px; color:white; border:0px;">
 
         <div class="row projectsRow" style="color:white;">
             <div class="col-md-12">
