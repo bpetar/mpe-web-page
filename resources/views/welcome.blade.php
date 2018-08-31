@@ -90,8 +90,8 @@ $( document ).ready(function() {
           <span class="icon-bar"></span>
         </button>
         <!-- Branding Image -->
-        <a class="navbar-brand" href="{{ url('/') }}" style="color:white;  border-left: solid 1px white; border-right: solid 1px white; border-top: solid 1px white;">
-            Mystic - Peanut
+        <a class="navbar-brand" href="{{ url('/') }}" style="font-family: 'Slackey', cursive; color:white; border-left: solid 1px white; border-right: solid 1px white; border-top: solid 1px white;">
+            Mystic Peanut
         </a>
       </div>
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -100,9 +100,6 @@ $( document ).ready(function() {
               <li style="background:#3f9f9f; color:white;"><a style="color:white; border-bottom: solid 1px white;" href="{{ url('/projects') }}">Projects</a></li>
               <li style="background:#9f9f3f; color:white;"><a style="color:white; border-bottom: solid 1px white;" href="{{ url('/news') }}">News</a></li>
               <li style="background:#e02f55; color:white;"><a style="color:white; border-bottom: solid 1px white;" id="id-a-contact2" href="#hmm">Contact</a></li>
-              <li style="background:#3f9f9f; color:white;"><a style="color:white; border-bottom: solid 1px white;"" a href="{{ url('/mystic_sites/furniture') }}" target="blank">project Furniture</a></li>
-              <li style="background:#9f9f3f; color:white;"><a style="color:white; border-bottom: solid 1px white;" a href="{{ url('/mystic_sites/matematika') }}" target="blank">project Matematika</a></li>
-              <li style="background:#e02f55; color:white;"><a style="color:white; border-bottom: solid 1px white;" a href="{{ url('/mystic_sites/rails') }}" target="blank">project Rails</a></li>
             </ul>
             <!-- Right Side Of Navbar -->
             <ul class="nav navbar-nav navbar-right">
@@ -127,10 +124,10 @@ $( document ).ready(function() {
     <div id="mysticCarousel" style="position:relative;" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner" style="height:90vh;" role="listbox">
         <div class="item active" style="height:90vh;">
-          <div style="background:url('assets/img/mystic-logo.png'); height:99px; width:295px; margin:auto;">
+          <div style="background:url('assets/img/logomp1.png'); background-size: cover; height:196px; width:295px; margin:auto; margin-top: 100px;">
           </div>
-          <div style="color:white; position:absolute; font-size:82px; width:100%; text-align: center;">
-                    Mystic-Peanut
+          <div style="font-family: 'Slackey', cursive; color:white; position:absolute; font-size:82px; width:100%; text-align: center;">
+                    Mystic Peanut
           </div>
           <div style="color:white; position:absolute; bottom:60px; font-size:22px; width:100%; text-align: center;">
                 Web and game development
@@ -218,7 +215,7 @@ $( document ).ready(function() {
     <div class="container moze">
       <div class="w3-row">
         <div class="col-md-12" style="text-align:center; top:-50px">
-          <h1>Mystic Peanut's Projects</h1>
+          <h1><span style="font-family: 'Slackey', cursive; padding-right:10px;">Mystic Peanut</span> projects</h1>
           <span>check out some of the things we've been involved with</span>
         </div>
       </div>

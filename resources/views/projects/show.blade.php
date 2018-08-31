@@ -133,7 +133,6 @@ $( document ).ready(function() {
                 </div>
             </div>
         </div>
-    </div>
 
         <div class="row projectsRow" style="color:white;">
             <div class="col-md-12" style="">
@@ -148,6 +147,7 @@ $( document ).ready(function() {
         </div>    
 
     </div>
+</div>
 
 
 

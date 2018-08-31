@@ -25,3 +25,9 @@ Route::get('/tags/{tag}','ProjectsController@showTags');
 
 Route::get('/', 'HomeController@index');
 
+Route::get('/templates/{file}', function ($file) {
+  if ($file == 'turtle.php')
+    return redirect('/projects/2');
+  else
+    return redirect('/');
+});

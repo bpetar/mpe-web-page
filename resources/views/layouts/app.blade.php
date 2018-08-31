@@ -20,6 +20,8 @@
 
     <link href="/css/app.css" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css?family=Slackey" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Lato';

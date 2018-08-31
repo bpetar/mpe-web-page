@@ -13,6 +13,8 @@ tasks
 - mobile screen friendly
 - full hd screen friendly
 
+- fix link:
+http://www.mystic-peanut.com/templates/turtle_download_counter.php?u=../files/ts_setup.exe
 
 + Add to DB projects: Client, Year, Link, More pictures?
 + Fix Project layout, Image on the left, Name, Desct, Client, Year, Link to the right

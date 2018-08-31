@@ -47,8 +47,8 @@ $( document ).ready(function() {
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}" style="color:white; border-bottom: solid 1px white; height:51px;">
-                    Mystic - Peanut
+                <a class="navbar-brand" href="{{ url('/') }}" style="font-family: 'Slackey', cursive; color:white; border-bottom: solid 1px white; height:51px;">
+                    Mystic Peanut
                 </a>
             </div>
 

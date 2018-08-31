@@ -27,10 +27,10 @@
         <div class="row">
             <div class="col-md-12 centered">              
                   
-                    <img src="assets/img/mystic-logo.png" alt="mystic-logo" style="width: 150px;">
+                    <img src="assets/img/logomp1.png" alt="mystic-logo" style="width: 150px;">
 
-                    <div class="caption">
-                      <p>Copyright © 2016 Mystic Peanut</p>
+                    <div id="hmm" class="caption">
+                      <p>Copyright © 2016 <span style="font-family: 'Slackey', cursive;">Mystic Peanut</span></p>
                     </div>
 
             </div>
