@@ -8,7 +8,7 @@
                 <p>We are small game and web development company from Serbia, available on the market since 2007.</p>
                 <h1>Follow us</h1>
                 <div style="background:#555; color:white; margin-bottom:15px;" >
-                    Facebook, Tweeter, Google+, Youtube, Blogger, GitHub
+                    <a href="https://www.facebook.com/mysticpeanutentertainment">Facebook</a>, <a href="https://www.youtube.com/user/mysicpeanut">Youtube</a>, <a href="https://mysticpeanut.blogspot.com/">Blogger</a>, <a href="https://github.com/bpetar">GitHub</a>
                 </div> 
             </div>
 

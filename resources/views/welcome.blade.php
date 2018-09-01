@@ -124,12 +124,12 @@ $( document ).ready(function() {
     <div id="mysticCarousel" style="position:relative;" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner" style="height:90vh;" role="listbox">
         <div class="item active" style="height:90vh;">
-          <div style="background:url('assets/img/logomp1.png'); background-size: cover; height:196px; width:295px; margin:auto; margin-top: 100px;">
+          <div style="background:url('assets/img/logomp1.png'); background-size: contain; background-repeat-x: no-repeat; background-position: center; height:30vh; margin:auto; margin-top: 3vh;">
           </div>
-          <div style="font-family: 'Slackey', cursive; color:white; position:absolute; font-size:82px; width:100%; text-align: center;">
+          <div style="font-family: 'Slackey', cursive; color:white; position:absolute; font-size:12vh; width:100%; text-align: center;">
                     Mystic Peanut
           </div>
-          <div style="color:white; position:absolute; bottom:60px; font-size:22px; width:100%; text-align: center;">
+          <div style="color:white; position:absolute; bottom:80px; font-size:22px; width:100%; text-align: center;">
                 Web and game development
           </div>
         </div>
@@ -185,7 +185,7 @@ $( document ).ready(function() {
       <div class="diamond" >
       </div>  
 </div>
-<div class="divi" style="position:relative; z-index:311; background:#fff; height:90vh; color:gray;">
+<div class="divi" style="position:relative; min-height:400px; z-index:311; background:#fff; color:gray;">
     <br><br>
   <div class="container">
     <div class="row">  
@@ -210,11 +210,11 @@ $( document ).ready(function() {
   </div>
   <div class="diamond2" style=""></div>
 </div>
-<div class="divi" style="background:#3f9f9f; height:100vh;">
-  <br><br>
+<div class="divi" style="background:#3f9f9f; min-height:600px; margin-top: -10px;
+height:100vh;">
     <div class="container moze">
       <div class="w3-row">
-        <div class="col-md-12" style="text-align:center; top:-50px">
+        <div class="col-md-12 welcomeProjectsTitle" style="text-align:center;">
           <h1><span style="font-family: 'Slackey', cursive; padding-right:10px;">Mystic Peanut</span> projects</h1>
           <span>check out some of the things we've been involved with</span>
         </div>
@@ -249,7 +249,7 @@ $( document ).ready(function() {
           @endforeach
         </div>
       @endforeach
-      <div class="col-md-12 " style=" text-align: center;  margin: 0 auto; font-size:18px; cursor:pointer;padding-top: 40px;"><a style="color:white;border:solid 1px white;padding:5px 5px 5px 5px;" href="{{ url('/projects') }}">These are our latest projects, click here to check them all</a>
+      <div class="col-md-12 " style=" text-align: center;  margin: 0 auto; font-size:18px; cursor:pointer;padding-top: 40px;"><a style="color:white;border:solid 1px white;padding:5px 5px 5px 5px;" href="{{ url('/projects') }}">Click to see all projects</a>
       </div>
     </div>
 </div>
