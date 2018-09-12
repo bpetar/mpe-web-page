@@ -102,10 +102,12 @@ $( document ).ready(function() {
             </div>
         </div>
 
-        @foreach ($projectsWithTag as $project)
-	    <div class="row projectsRow" style="color:white;">
-            
-            
+
+
+
+        @foreach (array_chunk($projectsWithTag,3) as $project3)
+        <div class="row projectsRow" style="color:white;">
+            @foreach ($project3 as $project)
 	        <div class="col-md-4" style="">
 
                 <div class="panel panel-default" style="background:#3f9f9f;">
@@ -147,7 +149,7 @@ $( document ).ready(function() {
 					</div>
 				</div>
 			</div>
-            
+            @endforeach
 
 		</div>
         @endforeach

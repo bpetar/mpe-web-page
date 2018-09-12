@@ -210,7 +210,7 @@ $( document ).ready(function() {
   </div>
   <div class="diamond2" style=""></div>
 </div>
-<div class="divi" style="background:#3f9f9f; min-height:600px; margin-top: -10px;
+<div class="divi" style="background:#3f9f9f; min-height:630px; margin-top: -10px;
 height:100vh;">
     <div class="container moze">
       <div class="w3-row">
